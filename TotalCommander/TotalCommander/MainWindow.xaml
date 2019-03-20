@@ -5,8 +5,135 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotalCommander"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
         
+        xmlns:model="clr-namespace:TotalCommander.Model"
+        
+        Title="TotalCommander" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Drive selector -->
+                <ComboBox ItemsSource="{Binding Drives}" Name="leftComboBox"
+                      Grid.Column="0"
+                      Grid.Row="0"
+                      Margin="3" Width="100" HorizontalAlignment="Left" SelectionChanged="LeftComboBox_SelectionChanged">
+                    <ComboBox.DataContext>
+                        <local:Driver>
+
+                        </local:Driver>
+                    </ComboBox.DataContext>
+                </ComboBox>
+
+                <TreeView 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Name="treeView"
+                    Margin="5"
+                    TreeViewItem.Expanded="TreeView_Expanded"
+                    ItemsSource="{Binding Source={x:Static model:TreeViewManager.Instance}, Path=Data}">
+                </TreeView>
+
+                <DataGrid
+                    Name="dataGrid"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="5"
+                    GridLinesVisibility="None"
+                    IsReadOnly="True"
+                    SelectionMode="Single"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="Column"
+                    MouseDoubleClick="DataGrid_MouseDoubleClick"
+                    ItemsSource ="{Binding Source={x:Static model:ListViewManager.Instance}, Path=Data}">
+
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  CanUserResize="False" Width="8" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Image}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                        <DataGridTextColumn Header="Size" Binding="{Binding Size}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+
+
+            <GridSplitter Grid.Column="1"
+                      Width="5" 
+                      HorizontalAlignment="Stretch">
+
+            </GridSplitter>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- Drive selector -->
+                <ComboBox  ItemsSource="{Binding Drives}" Name="rightComboBox"
+                      Grid.Column="1"
+                      Grid.Row="0"
+                      Margin="3" Width="100" HorizontalAlignment="Left">
+                    <ComboBox.DataContext>
+                        <local:Driver>
+
+                        </local:Driver>
+                    </ComboBox.DataContext>
+                </ComboBox>
+
+                <ListView Name="rightDirectory" 
+                      Grid.Column="1"
+                      Grid.Row="2"
+                      Margin="5"
+                      HorizontalContentAlignment="Center">
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" 
+                                    Width="Auto"/>
+
+                            <GridViewColumn Header="Type" 
+                                    Width="Auto"/>
+
+                            <GridViewColumn Header="Size" 
+                                    Width="Auto"/>
+                        </GridView>
+
+                    </ListView.View>
+                </ListView>
+
+            </Grid>
+
+        </Grid>
+
+
     </Grid>
 </Window>
