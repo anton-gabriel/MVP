@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHub\MVP\TotalCommander\TotalCommander\App.xaml
-11151548125
+5-1602623906
 
-12-229869373
+16911902274
 151984215308
-MainWindow.xaml;
+Controls\AppMenu.xaml;Controls\CommandMenu.xaml;Controls\FileDataGrid.xaml;Controls\FileTreeView.xaml;MainWindow.xaml;
 
 False
 

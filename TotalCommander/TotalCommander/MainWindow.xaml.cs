@@ -18,21 +18,21 @@ namespace TotalCommander
             //LoadDirectories();
         }
 
-
-        private void TreeView_Expanded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TreeViewItem item = e.OriginalSource as TreeViewItem;
-            Model.TreeViewManager.Instance.Expand(item);
-
+            //Model.ListViewManager.Instance.Back();
+           
+                if (contentControl1.Template == Resources["gridVertical"])
+                    contentControl1.Template = (ControlTemplate)Resources["gridHorizontal"];
+                else
+                    contentControl1.Template = (ControlTemplate)Resources["gridVertical"];
+            
         }
 
-        private void DataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string path = ((Model.MemoryItem)this.dataGrid.SelectedItem)?.Path;
-            if (path != null)
-            {
-                Model.ListViewManager.Instance.Open(path);
-            }
+           // Model.ListViewManager.Instance.Next();
         }
+     
     }
 }

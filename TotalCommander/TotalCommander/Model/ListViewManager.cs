@@ -6,19 +6,10 @@ namespace TotalCommander.Model
 {
     class ListViewManager
     {
-        #region Singleton instance
-        private static ListViewManager instance;
-        public static ListViewManager Instance
+        #region Constructors
+        public ListViewManager()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new ListViewManager();
-                    instance.Initialize();
-                }
-                return instance;
-            }
+            Initialize();
         }
         #endregion
 
@@ -66,23 +57,30 @@ namespace TotalCommander.Model
             return item;
         }
 
-        public void Open(in string path)
+        public void Open(in MemoryItem item)
         {
             try
             {
+                string path = item.Path;
                 FileAttributes attr = System.IO.File.GetAttributes(path);
                 if (attr.HasFlag(FileAttributes.Directory))
                 {
+                    this.backward.Push(item);
                     DirectoryInfo directoryInfo = new DirectoryInfo(path);
-                    this.backward.Push(CreateChild(directoryInfo));
                     List<MemoryItem> items = new List<MemoryItem>();
+
                     foreach (DirectoryInfo dir in directoryInfo.GetDirectories())
                     {
-                        items.Add(CreateChild(dir));
+                        MemoryItem child = CreateChild(dir);
+                        child.Parent = item;
+                        items.Add(child);
                     }
                     foreach (FileInfo file in directoryInfo.GetFiles())
                     {
-                        items.Add(CreateChild(file));
+
+                        MemoryItem child = CreateChild(file);
+                        child.Parent = item;
+                        items.Add(child);
                     }
                     LoadNewData(items);
                 }
@@ -92,6 +90,23 @@ namespace TotalCommander.Model
                 System.Windows.MessageBox.Show("Access denied");
             }
 
+        }
+
+        public void Back()
+        {
+            if (this.backward.Count != 0)
+            {
+                this.forward.Push(this.backward.Peek());
+                Open(this.backward.Pop().Parent);
+            }
+        }
+
+        public void Next()
+        {
+            if (this.forward.Count != 0)
+            {
+                Open(this.forward.Pop());
+            }
         }
         #endregion
 

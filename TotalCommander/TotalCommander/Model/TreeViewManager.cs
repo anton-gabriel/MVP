@@ -6,19 +6,10 @@ namespace TotalCommander.Model
 {
     sealed class TreeViewManager
     {
-        #region Singleton instance
-        private static TreeViewManager instance;
-        public static TreeViewManager Instance
+        #region Constructors
+        public TreeViewManager()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new TreeViewManager();
-                    instance.Initialize();
-                }
-                return instance;
-            }
+            Initialize();
         }
         #endregion
 
@@ -75,7 +66,7 @@ namespace TotalCommander.Model
                     item.Items.Add(CreateChild(file));
                 }
             }
-            catch(System.Exception exception)
+            catch (System.Exception exception)
             {
                 System.Console.WriteLine(exception.Message);
             }

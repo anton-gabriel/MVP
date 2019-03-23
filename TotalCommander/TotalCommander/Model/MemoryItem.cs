@@ -44,6 +44,7 @@ namespace TotalCommander.Model
             get { return this.size / System.Math.Pow(1024, (uint)sizeRepresentation); }
             set { this.size = value; }
         }
+        public MemoryItem Parent { get; set; }
 
         #endregion
 

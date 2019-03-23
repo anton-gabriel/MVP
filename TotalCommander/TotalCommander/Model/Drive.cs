@@ -5,7 +5,7 @@ namespace TotalCommander.Model
     public class Drive : MemoryItem
     {
         public Drive(in string name, in string path, double size)
-            : base(name, "<DIR>", path, size)
+            : base(name, "Drive", path, size)
         {
 
         }
@@ -14,7 +14,7 @@ namespace TotalCommander.Model
         {
             try
             {
-                string fullPath = System.IO.Path.GetFullPath(@"..\..\..\Images\drive.png");
+                string fullPath = System.IO.Path.GetFullPath(@"..\..\Images\drive.png");
                 return new BitmapImage(new System.Uri(fullPath));
             }
             catch (System.Exception)

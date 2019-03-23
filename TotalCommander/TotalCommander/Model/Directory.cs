@@ -7,7 +7,7 @@ namespace TotalCommander.Model
     public class Directory : MemoryItem
     {
         public Directory(in string name, in string type, in string path)
-            : base(name, type, path, double.NaN)
+            : base(name, "Folder", path, double.NaN)
         {
 
         }
@@ -16,7 +16,7 @@ namespace TotalCommander.Model
         {
             try
             {
-                string fullPath = System.IO.Path.GetFullPath(@"..\..\..\Images\folder.png");
+                string fullPath = System.IO.Path.GetFullPath(@"..\..\Images\folder.png");
                 return new BitmapImage(new System.Uri(fullPath));
             }
             catch (System.Exception)
