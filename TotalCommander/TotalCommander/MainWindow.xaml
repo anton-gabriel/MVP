@@ -11,9 +11,22 @@
         
         Title="TotalCommander" Height="450" Width="800">
 
-    <Window.Resources>
-        <DataTemplate x:Key="leftContent">
-            <TabControl>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <Controls:AppMenu Grid.Row="0"></Controls:AppMenu>
+
+        <Grid Grid.Row="1" Name="CentralGrid">
+       
+
+
+            <TabControl Grid.Row="0" Grid.Column="0">
                 <TabItem Header="Test">
 
                     <Grid>
@@ -36,21 +49,19 @@
                         </ComboBox>
 
                         <Grid Grid.Row="1" Grid.Column="0">
-                            <Controls:FileTreeView></Controls:FileTreeView>
+                            <Controls:FileTreeView x:Name="leftTreeView"></Controls:FileTreeView>
                         </Grid>
 
-                        <!--<Grid Grid.Row="0">
+                        <!--<Grid Grid.Row="1" Grid.Column="0">
                     <Controls:FileDataGrid></Controls:FileDataGrid>
                 </Grid>-->
                     </Grid>
                 </TabItem>
-                
             </TabControl>
-            
-        </DataTemplate>
 
-        <DataTemplate x:Key="rightContent">
-            <TabControl>
+            <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+            <TabControl Grid.Row="2" Grid.Column="2">
                 <TabItem Header="Test">
 
                     <Grid>
@@ -62,7 +73,6 @@
                         <ComboBox
                     Grid.Row="0"
                     ItemsSource="{Binding Drives}"
-                    Name="rightComboBox"
                     Margin="3"
                     Width="100">
                             <ComboBox.DataContext>
@@ -76,7 +86,7 @@
                             <Controls:FileDataGrid></Controls:FileDataGrid>
                         </Grid>
 
-                        <!--<Grid Grid.Row="0">
+                        <!--<Grid Grid.Row="1" Grid.Column="0">
                     <Controls:FileDataGrid></Controls:FileDataGrid>
                 </Grid>-->
                     </Grid>
@@ -84,46 +94,11 @@
 
             </TabControl>
 
-        </DataTemplate>
-        <ControlTemplate x:Key="gridHorizontal">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <ContentPresenter Grid.Row="0" Grid.Column="0" ContentTemplate="{StaticResource leftContent}"/>
-                <ContentPresenter Grid.Row="0" Grid.Column="2" ContentTemplate="{StaticResource rightContent}"/>
-                <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </Grid>
-        </ControlTemplate>
-
-        <ControlTemplate x:Key="gridVertical">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <ContentPresenter Grid.Row="0" Grid.Column="0" ContentTemplate="{StaticResource leftContent}" />
-                <ContentPresenter Grid.Row="2" Grid.Column="0" ContentTemplate="{StaticResource rightContent}"/>
-                <GridSplitter Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </Grid>
-        </ControlTemplate>
-    </Window.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-
-
-        <Controls:AppMenu Grid.Row="0"></Controls:AppMenu>
-        <ContentControl  Grid.Row="1" Name="contentControl1" Template="{StaticResource ResourceKey=gridHorizontal}"/>
-       
+        </Grid>
+        <Button Click="Button_Click">Vertical</Button>
         <Controls:CommandMenu Grid.Row="2"></Controls:CommandMenu>
     </Grid>
 
 </Window>
+
+    
