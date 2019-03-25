@@ -26,7 +26,7 @@
        
 
 
-            <TabControl Grid.Row="0" Grid.Column="0">
+            <!--<TabControl Grid.Row="0" Grid.Column="0">
                 <TabItem Header="Test">
 
                     <Grid>
@@ -42,9 +42,9 @@
                     Margin="3"
                     Width="100">
                             <ComboBox.DataContext>
-                                <local:Driver>
-
-                                </local:Driver>
+                                <model:Driver>
+                                    
+                                </model:Driver>
                             </ComboBox.DataContext>
                         </ComboBox>
 
@@ -52,12 +52,14 @@
                             <Controls:FileTreeView x:Name="leftTreeView"></Controls:FileTreeView>
                         </Grid>
 
-                        <!--<Grid Grid.Row="1" Grid.Column="0">
+                        --><!--<Grid Grid.Row="1" Grid.Column="0">
                     <Controls:FileDataGrid></Controls:FileDataGrid>
-                </Grid>-->
+                </Grid>--><!--
                     </Grid>
                 </TabItem>
-            </TabControl>
+            </TabControl>-->
+
+            <Controls:FileTab Grid.Row="0" Grid.Column="0"/>
 
             <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
@@ -76,9 +78,9 @@
                     Margin="3"
                     Width="100">
                             <ComboBox.DataContext>
-                                <local:Driver>
+                                <model:Driver>
 
-                                </local:Driver>
+                                </model:Driver>
                             </ComboBox.DataContext>
                         </ComboBox>
 

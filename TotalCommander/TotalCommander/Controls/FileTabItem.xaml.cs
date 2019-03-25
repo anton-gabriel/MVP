@@ -16,20 +16,13 @@ using System.Windows.Shapes;
 namespace TotalCommander.Controls
 {
     /// <summary>
-    /// Interaction logic for FileTreeView.xaml
+    /// Interaction logic for FileTabItem.xaml
     /// </summary>
-    public partial class FileTreeView : UserControl
+    public partial class FileTabItem : UserControl
     {
-        public FileTreeView()
+        public FileTabItem()
         {
             InitializeComponent();
-        }
-
-        private void TreeView_Expanded(object sender, RoutedEventArgs e)
-        {
-          
-            TreeViewItem item = e.OriginalSource as TreeViewItem;
-            (this.treeView.DataContext as Model.TreeViewManager).Expand(item);
         }
     }
 }

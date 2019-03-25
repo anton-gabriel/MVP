@@ -4,6 +4,7 @@ D:\GitHub\MVP\TotalCommander\TotalCommander\bin\Debug\TotalCommander.pdb
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\AppMenu.g.cs
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\CommandMenu.g.cs
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileDataGrid.g.cs
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTab.g.cs
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTreeView.g.cs
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\MainWindow.g.cs
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\App.g.cs
@@ -13,6 +14,7 @@ D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander_MarkupCompi
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\AppMenu.baml
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\CommandMenu.baml
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileDataGrid.baml
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTab.baml
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTreeView.baml
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\MainWindow.baml
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.g.resources
@@ -22,3 +24,5 @@ D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.Core
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.exe
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.pdb
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csprojAssemblyReference.cache
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTabItem.g.cs
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTabItem.baml

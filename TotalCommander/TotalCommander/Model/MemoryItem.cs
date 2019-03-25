@@ -45,7 +45,6 @@ namespace TotalCommander.Model
             set { this.size = value; }
         }
         public MemoryItem Parent { get; set; }
-
         #endregion
 
         #region Private methods

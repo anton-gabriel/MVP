@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="TotalCommander.Controls.FileTabItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TotalCommander.Controls"
+             mc:Ignorable="d" 
+    
+             xmlns:model="clr-namespace:TotalCommander.Model"
+             
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    
+    <TabItem Header="Test" Name="tabItem">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ComboBox
+                    Grid.Row="0"
+                    ItemsSource="{Binding Drives}"
+                    Name="rightComboBox"
+                    Margin="3"
+                    Width="100">
+                <ComboBox.DataContext>
+                    <model:Driver></model:Driver>
+                </ComboBox.DataContext>
+            </ComboBox>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <local:FileTreeView x:Name="leftTreeView"></local:FileTreeView>
+            </Grid>
+
+            <!--<Grid Grid.Row="1" Grid.Column="0">
+                    <Controls:FileDataGrid></Controls:FileDataGrid>
+                </Grid>-->
+        </Grid>
+    </TabItem>
+</UserControl>

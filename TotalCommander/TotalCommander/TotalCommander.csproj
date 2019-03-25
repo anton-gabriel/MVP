@@ -70,6 +70,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\FileTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FileTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FileTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,10 +99,15 @@
     <Compile Include="Controls\FileDataGrid.xaml.cs">
       <DependentUpon>FileDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FileTab.xaml.cs">
+      <DependentUpon>FileTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FileTabItem.xaml.cs">
+      <DependentUpon>FileTabItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FileTreeView.xaml.cs">
       <DependentUpon>FileTreeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Driver.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -102,8 +115,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Drive.cs" />
+    <Compile Include="Model\Driver.cs" />
     <Compile Include="Model\ListViewManager.cs" />
     <Compile Include="Model\MemoryItem.cs" />
+    <Compile Include="Model\TabManager.cs" />
     <Compile Include="Model\TreeViewManager.cs" />
     <Compile Include="Model\File.cs" />
     <Compile Include="Model\Directory.cs" />
