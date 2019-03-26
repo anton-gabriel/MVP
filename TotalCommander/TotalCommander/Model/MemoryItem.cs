@@ -6,13 +6,14 @@ namespace TotalCommander.Model
     {
         public enum SizeRepresentation : byte
         {
-            Invalid = 0,
-            B,
+            B = 0,
             KB,
             MB,
             GB,
             TB
         }
+
+        private const string separator = " ";
         public static SizeRepresentation sizeRepresentation;
 
         #region Constructors
@@ -24,14 +25,14 @@ namespace TotalCommander.Model
         {
             Name = name;
             Type = type;
-            Size = size;
             Path = path;
             Image = GetImage(Path);
+            this.size = size;
         }
         #endregion
 
         #region Private Fields
-        private double size;
+        private readonly double size;
         #endregion
 
         #region Public Fields
@@ -39,11 +40,8 @@ namespace TotalCommander.Model
         public string Path { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public double Size
-        {
-            get { return this.size / System.Math.Pow(1024, (uint)sizeRepresentation); }
-            set { this.size = value; }
-        }
+        public string Size => (this.size / System.Math.Pow(1024, (uint)sizeRepresentation)).ToString() +
+                    separator + sizeRepresentation.ToString();
         public MemoryItem Parent { get; set; }
         #endregion
 

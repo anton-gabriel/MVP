@@ -10,14 +10,11 @@ namespace TotalCommander.Controls
         public FileTab()
         {
             InitializeComponent();
- 
-            //(this.tabControl.DataContext as Model.TabManager).TabItem = this.tabControl.SelectedItem as TabItem;
-           //(this.tabControl.DataContext as Model.TabManager).NewTab();
         }
         
         public void NewTab()
         {
-            //(tabControl.DataContext as Model.TabManager)
+            (tabControl.DataContext as Model.TabManager).NewTab();
         }
 
     }

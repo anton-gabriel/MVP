@@ -23,80 +23,15 @@
         <Controls:AppMenu Grid.Row="0"></Controls:AppMenu>
 
         <Grid Grid.Row="1" Name="CentralGrid">
-       
-
-
-            <!--<TabControl Grid.Row="0" Grid.Column="0">
-                <TabItem Header="Test">
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <ComboBox
-                    Grid.Row="0"
-                    ItemsSource="{Binding Drives}"
-                    Name="rightComboBox"
-                    Margin="3"
-                    Width="100">
-                            <ComboBox.DataContext>
-                                <model:Driver>
-                                    
-                                </model:Driver>
-                            </ComboBox.DataContext>
-                        </ComboBox>
-
-                        <Grid Grid.Row="1" Grid.Column="0">
-                            <Controls:FileTreeView x:Name="leftTreeView"></Controls:FileTreeView>
-                        </Grid>
-
-                        --><!--<Grid Grid.Row="1" Grid.Column="0">
-                    <Controls:FileDataGrid></Controls:FileDataGrid>
-                </Grid>--><!--
-                    </Grid>
-                </TabItem>
-            </TabControl>-->
 
             <Controls:FileTab Grid.Row="0" Grid.Column="0"/>
 
             <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-            <TabControl Grid.Row="2" Grid.Column="2">
-                <TabItem Header="Test">
-
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <ComboBox
-                    Grid.Row="0"
-                    ItemsSource="{Binding Drives}"
-                    Margin="3"
-                    Width="100">
-                            <ComboBox.DataContext>
-                                <model:Driver>
-
-                                </model:Driver>
-                            </ComboBox.DataContext>
-                        </ComboBox>
-
-                        <Grid Grid.Row="1" Grid.Column="0">
-                            <Controls:FileDataGrid></Controls:FileDataGrid>
-                        </Grid>
-
-                        <!--<Grid Grid.Row="1" Grid.Column="0">
-                    <Controls:FileDataGrid></Controls:FileDataGrid>
-                </Grid>-->
-                    </Grid>
-                </TabItem>
-
-            </TabControl>
+            <Controls:FileTab Grid.Row="2" Grid.Column="2"/>
 
         </Grid>
+        
         <Button Click="Button_Click">Vertical</Button>
         <Controls:CommandMenu Grid.Row="2"></Controls:CommandMenu>
     </Grid>

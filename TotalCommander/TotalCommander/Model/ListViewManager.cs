@@ -28,15 +28,11 @@ namespace TotalCommander.Model
             Data = new ObservableCollection<MemoryItem>();
             this.backward = new Stack<MemoryItem>();
             this.forward = new Stack<MemoryItem>();
-            foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
-            {
-                Data.Add(CreateChild(driveInfo));
-            }
         }
         #endregion
 
         #region Public methods
-        public MemoryItem CreateChild(object obj)
+        public static MemoryItem CreateChild(object obj)
         {
             MemoryItem item = null;
             if (obj is FileInfo)

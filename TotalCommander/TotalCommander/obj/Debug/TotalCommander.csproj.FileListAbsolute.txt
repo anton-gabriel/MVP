@@ -23,6 +23,6 @@ D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.Gene
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.CoreCompileInputs.cache
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.exe
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.pdb
-D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csprojAssemblyReference.cache
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTabItem.g.cs
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileTabItem.baml
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csprojAssemblyReference.cache

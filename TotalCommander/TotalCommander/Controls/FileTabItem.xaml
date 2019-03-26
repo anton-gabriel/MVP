@@ -9,9 +9,9 @@
              xmlns:model="clr-namespace:TotalCommander.Model"
              
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
-    <TabItem Header="Test" Name="tabItem">
+
+
+    <TabItem Header="{Binding Header.Name, Mode = OneWay}" Name="tabItem">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -19,24 +19,33 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
+
+
             <ComboBox
                     Grid.Row="0"
                     ItemsSource="{Binding Drives}"
-                    Name="rightComboBox"
+                    Name="comboBox"
+                    SelectionChanged="LoadDrive_SelectionChanged"
                     Margin="3"
                     Width="100">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Image}" Width="20"/>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
                 <ComboBox.DataContext>
                     <model:Driver></model:Driver>
                 </ComboBox.DataContext>
             </ComboBox>
 
-            <Grid Grid.Row="1" Grid.Column="0">
-                <local:FileTreeView x:Name="leftTreeView"></local:FileTreeView>
-            </Grid>
+            <local:FileTreeView Grid.Row="1" Grid.Column="0" x:Name="fileTreeView"></local:FileTreeView>
 
-            <!--<Grid Grid.Row="1" Grid.Column="0">
-                    <Controls:FileDataGrid></Controls:FileDataGrid>
-                </Grid>-->
+            <local:FileDataGrid Grid.Row="1" Grid.Column="0" x:Name="fileDataGrid"></local:FileDataGrid>
         </Grid>
+
     </TabItem>
 </UserControl>

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TotalCommander.Controls
 {
@@ -20,9 +9,96 @@ namespace TotalCommander.Controls
     /// </summary>
     public partial class FileTabItem : UserControl
     {
+        public enum FileTabType
+        {
+            InvalidType = 0,
+            TreeViewTab,
+            DataGridTab
+        }
+
+        public class TabHeader : INotifyPropertyChanged
+        {
+         
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            private FileTabType fileTabType;
+            #region Properties
+            public string CurrentDrive { get; set; }
+            public string Name
+            {
+                get
+                {
+                    switch (TabType)
+                    {
+                        case FileTabType.TreeViewTab:
+                            return TabType.ToString();
+                        case FileTabType.DataGridTab:
+                            return CurrentDrive;
+                        default:
+                            return null;
+                    }
+                }
+            }
+            public FileTabType TabType
+            {
+                get => this.fileTabType;
+                set
+                {
+                    this.fileTabType = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+            #endregion
+
+            protected void OnPropertyChanged(string name)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+
+
+        public TabHeader Header { get; set; }
+
+
         public FileTabItem()
         {
             InitializeComponent();
+            DataContext = this;
+            Header = new TabHeader();
+
+            ActivateDataGrid(@"C:\");
         }
+
+        #region Events
+        private void LoadDrive_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string driveName = (this.comboBox.SelectedItem as Model.Drive).Name;
+
+            ActivateDataGrid(driveName);
+        }
+        #endregion
+
+
+        #region Public methods
+        public void ActivateTreeView()
+        {
+            this.fileTreeView.Visibility = Visibility.Visible;
+            this.fileDataGrid.Visibility = Visibility.Hidden;
+
+            Header.TabType = FileTabType.TreeViewTab;
+        }
+
+        public void ActivateDataGrid(in string driveName)
+        {
+            this.fileTreeView.Visibility = Visibility.Hidden;
+            this.fileDataGrid.Visibility = Visibility.Visible;
+
+            this.fileDataGrid.OpenDrive(driveName);
+
+            Header.CurrentDrive = driveName;
+            Header.TabType = FileTabType.DataGridTab;
+        }
+        #endregion
     }
 }

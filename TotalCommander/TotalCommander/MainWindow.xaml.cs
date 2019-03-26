@@ -37,11 +37,6 @@ namespace TotalCommander
             this.verticalArrangement = false;
         }
 
-        private void LeftComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //LoadDirectories();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.verticalArrangement)
@@ -52,7 +47,6 @@ namespace TotalCommander
                     this.CentralGrid.ColumnDefinitions.Add(columnDefinition);
                 }
                 this.verticalArrangement = false;
-
             }
             else
             {
@@ -63,13 +57,6 @@ namespace TotalCommander
                 }
                 this.verticalArrangement = true;
             }
-
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            // Model.ListViewManager.Instance.Next();
         }
 
     }

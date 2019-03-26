@@ -16,7 +16,6 @@
                     Grid.Row="2"
                     GridLinesVisibility="None"
                     IsReadOnly="True"
-                    SelectionMode="Single"
                     AutoGenerateColumns="False"
                     HeadersVisibility="Column"
                     MouseDoubleClick="DataGrid_MouseDoubleClick"

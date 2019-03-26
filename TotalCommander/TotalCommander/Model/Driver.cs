@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace TotalCommander.Model
 {
     class Driver
     {
-        public List<DriveInfo> Drives { get; set; }
+        public List<Drive> Drives { get; set; }
         public Driver()
         {
-            Drives = DriveInfo.GetDrives().ToList();
+            Drives = new List<Drive>();
+            foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
+            {
+                Drives.Add(new Drive(driveInfo.Name, driveInfo.Name, driveInfo.TotalSize - driveInfo.TotalFreeSpace));
+            }
         }
     }
 }
