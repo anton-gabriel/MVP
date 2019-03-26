@@ -19,6 +19,7 @@
                     AutoGenerateColumns="False"
                     HeadersVisibility="Column"
                     MouseDoubleClick="DataGrid_MouseDoubleClick"
+            SelectionChanged="DataGrid_SelectionChanged"
                     ItemsSource ="{Binding Data}">
             <DataGrid.DataContext>
                 <model:ListViewManager></model:ListViewManager>

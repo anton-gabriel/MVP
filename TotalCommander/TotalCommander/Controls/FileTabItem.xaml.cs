@@ -18,7 +18,7 @@ namespace TotalCommander.Controls
 
         public class TabHeader : INotifyPropertyChanged
         {
-         
+
             public event PropertyChangedEventHandler PropertyChanged;
 
             private FileTabType fileTabType;
@@ -58,17 +58,23 @@ namespace TotalCommander.Controls
 
 
 
+        #region Properties
         public TabHeader Header { get; set; }
 
+
+        public Model.MemoryItem SelectedItem => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.SelectedItem : null;
+        #endregion
 
         public FileTabItem()
         {
             InitializeComponent();
+
             DataContext = this;
             Header = new TabHeader();
 
             ActivateDataGrid(@"C:\");
         }
+
 
         #region Events
         private void LoadDrive_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -87,6 +93,7 @@ namespace TotalCommander.Controls
             this.fileDataGrid.Visibility = Visibility.Hidden;
 
             Header.TabType = FileTabType.TreeViewTab;
+            RaiseEvent(new RoutedEventArgs(FileDataGrid.ItemSelectedEvent));
         }
 
         public void ActivateDataGrid(in string driveName)
@@ -98,6 +105,7 @@ namespace TotalCommander.Controls
 
             Header.CurrentDrive = driveName;
             Header.TabType = FileTabType.DataGridTab;
+            RaiseEvent(new RoutedEventArgs(FileDataGrid.ItemSelectedEvent));
         }
         #endregion
     }

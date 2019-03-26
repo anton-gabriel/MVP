@@ -15,16 +15,10 @@ namespace TotalCommander.Model
 
         private void Initialize()
         {
-            Controls.FileTabItem fileTreeViewTab = new Controls.FileTabItem();
-            fileTreeViewTab.ActivateTreeView();
-            //   (LogicalTreeHelper.FindLogicalNode(fileTreeViewTab, "fileDataGrid") as Controls.FileDataGrid).Visibility = Visibility.Hidden;
-
             Controls.FileTabItem fileDataGridTab = new Controls.FileTabItem();
-            fileDataGridTab.ActivateDataGrid(@"C:\");
 
             Data = new ObservableCollection<TabItem>
             {
-               fileTreeViewTab.tabItem,
                fileDataGridTab.tabItem
             };
         }

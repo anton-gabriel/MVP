@@ -20,20 +20,60 @@
 
 
 
-        <Controls:AppMenu Grid.Row="0"></Controls:AppMenu>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Pack"/>
+                <MenuItem Header="Unpack"/>
+                <MenuItem Header="Compare"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
 
-        <Grid Grid.Row="1" Name="CentralGrid">
+            <MenuItem Header="Show">
+                <MenuItem Header="Full" Click="FullView_Click"/>
+                <MenuItem Header="Tree" Click="TreeView_Click"/>
+                <MenuItem Header="Vertical" Click="VerticalView_Click" />
+                <Separator/>
+                <MenuItem Header="New Tab" Click="NewTab_Click"/>
+            </MenuItem>
 
-            <Controls:FileTab Grid.Row="0" Grid.Column="0"/>
+            <MenuItem Header="Help">
+                <MenuItem Header="Anton Gabriel" IsEnabled="False"/>
+                <MenuItem Header="10LF371" IsEnabled="False"/>
+                <Hyperlink Name="Link" RequestNavigate="OpenLink" NavigateUri="https://student.unitbv.ro/">
+                    gabriel.anton@student.unitbv.ro
+                </Hyperlink>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" Name="CentralGrid" >
+
+            <Controls:FileTab Grid.Row="0" Grid.Column="0" x:Name="leftControl" MouseDown="LeftControl_MouseDown"/>
 
             <GridSplitter Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-            <Controls:FileTab Grid.Row="2" Grid.Column="2"/>
+            <Controls:FileTab Grid.Row="2" Grid.Column="2" x:Name="rightControl" MouseDown="RightControl_MouseDown"/>
 
         </Grid>
-        
-        <Button Click="Button_Click">Vertical</Button>
-        <Controls:CommandMenu Grid.Row="2"></Controls:CommandMenu>
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" IsEnabled="False" Name="viewButton" Click="View_Button">F3 View</Button>
+            <Button Grid.Column="1" IsEnabled="False" Name="editButton" Click="Edit_Button">F4 Edit</Button>
+            <Button Grid.Column="2" IsEnabled="False" Name="copyButton" Click="Copy_Button">F2 Copy</Button>
+            <Button Grid.Column="3" IsEnabled="False" Name="moveButton" Click="Move_Button">F3 Move</Button>
+            <Button Grid.Column="4" IsEnabled="False" Name="newFolderButton" Click="NewFolder_Button">F4 New Folder</Button>
+            <Button Grid.Column="5" IsEnabled="False" Name="deleteButton" Click="Delete_Button">F5 Delete</Button>
+        </Grid>
     </Grid>
 
 </Window>
