@@ -71,12 +71,22 @@ namespace TotalCommander
             this.moveButton.IsEnabled = enabled;
             this.newFolderButton.IsEnabled = SelectedTab?.SelectedTabItem.Header.TabType == Controls.FileTabType.DataGridTab;
             this.deleteButton.IsEnabled = enabled;
+
+            this.packMenuItem.IsEnabled = enabled;
+            this.unpackMenuItem.IsEnabled = enabled;
+            this.compareMenuItem.IsEnabled = leftControl.SelectedTabItem?.SelectedItem != null &&
+                rightControl.SelectedTabItem?.SelectedItem != null;
+            this.fullViewMenuItem.IsEnabled = SelectedTab != null;
+            this.treeViewMenuItem.IsEnabled = SelectedTab != null;
+            this.newTabMenuItem.IsEnabled = SelectedTab != null;
         }
 
         private void RightControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SelectedTab = this.rightControl;
+            SelectedTab.Enable();
             UnselectedTab = this.leftControl;
+            UnselectedTab.Disable();
             LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
             e.Handled = true;
         }
@@ -84,7 +94,9 @@ namespace TotalCommander
         private void LeftControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SelectedTab = this.leftControl;
+            SelectedTab.Enable();
             UnselectedTab = this.rightControl;
+            UnselectedTab.Disable();
             LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
             e.Handled = true;
         }

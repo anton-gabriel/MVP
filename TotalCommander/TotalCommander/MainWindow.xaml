@@ -22,19 +22,19 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="Pack" Click="Pack_Click"/>
-                <MenuItem Header="Unpack" Click="Unpack_Click"/>
-                <MenuItem Header="Compare"/>
+                <MenuItem Header="Pack"  Name ="packMenuItem" Click="Pack_Click"/>
+                <MenuItem Header="Unpack" Name ="unpackMenuItem"  Click="Unpack_Click"/>
+                <MenuItem Header="Compare" Name="compareMenuItem"/>
                 <Separator/>
                 <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
 
             <MenuItem Header="Show">
-                <MenuItem Header="Full" Click="FullView_Click"/>
-                <MenuItem Header="Tree" Click="TreeView_Click"/>
+                <MenuItem Header="Full" Name="fullViewMenuItem" Click="FullView_Click"/>
+                <MenuItem Header="Tree" Name="treeViewMenuItem" Click="TreeView_Click"/>
                 <MenuItem Header="Vertical" Click="VerticalView_Click" />
                 <Separator/>
-                <MenuItem Header="New Tab" Click="NewTab_Click"/>
+                <MenuItem Header="New Tab" Name="newTabMenuItem" Click="NewTab_Click"/>
             </MenuItem>
 
             <MenuItem Header="Help">
