@@ -3,10 +3,10 @@ using System.IO;
 
 namespace TotalCommander.Model
 {
-    class Driver
+    class DriveList
     {
         public List<Drive> Drives { get; set; }
-        public Driver()
+        public DriveList()
         {
             Drives = new List<Drive>();
             foreach (DriveInfo driveInfo in DriveInfo.GetDrives())

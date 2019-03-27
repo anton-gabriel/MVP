@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -58,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\UserDialog.cs" />
     <Page Include="Controls\AppMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,8 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Drive.cs" />
-    <Compile Include="Model\Driver.cs" />
-    <Compile Include="Model\ListViewManager.cs" />
+    <Compile Include="Model\DriveList.cs" />
+    <Compile Include="Model\DataGridManager.cs" />
     <Compile Include="Model\MemoryItem.cs" />
     <Compile Include="Model\TabManager.cs" />
     <Compile Include="Model\TreeViewManager.cs" />
@@ -147,9 +149,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\TreeView\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\drive.png" />
     <Resource Include="Images\folder.png" />

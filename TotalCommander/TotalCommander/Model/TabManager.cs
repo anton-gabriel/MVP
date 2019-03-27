@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace TotalCommander.Model
@@ -26,7 +25,6 @@ namespace TotalCommander.Model
         public void NewTab()
         {
             Data.Add(new Controls.FileTabItem().tabItem);
-
         }
     }
 }

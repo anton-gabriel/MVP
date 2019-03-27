@@ -4,10 +4,10 @@ using System.IO;
 
 namespace TotalCommander.Model
 {
-    class ListViewManager
+    class DataGridManager
     {
         #region Constructors
-        public ListViewManager()
+        public DataGridManager()
         {
             Initialize();
         }
@@ -15,6 +15,7 @@ namespace TotalCommander.Model
 
         #region Public Fields
         public ObservableCollection<MemoryItem> Data { get; private set; }
+        public MemoryItem CurrentDirectory { get; private set; }
         #endregion
 
         #region Private Fields
@@ -61,6 +62,7 @@ namespace TotalCommander.Model
                 FileAttributes attr = System.IO.File.GetAttributes(path);
                 if (attr.HasFlag(FileAttributes.Directory))
                 {
+                    CurrentDirectory = item as MemoryItem;
                     this.backward.Push(item);
                     DirectoryInfo directoryInfo = new DirectoryInfo(path);
                     List<MemoryItem> items = new List<MemoryItem>();

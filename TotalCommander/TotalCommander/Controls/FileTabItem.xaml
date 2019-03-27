@@ -38,7 +38,7 @@
                 </ComboBox.ItemTemplate>
 
                 <ComboBox.DataContext>
-                    <model:Driver></model:Driver>
+                    <model:DriveList></model:DriveList>
                 </ComboBox.DataContext>
             </ComboBox>
 

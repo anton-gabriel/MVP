@@ -1,5 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,8 +22,6 @@ namespace TotalCommander.Controls
         }
 
 
-
-
         public FileDataGrid()
         {
             InitializeComponent();
@@ -30,7 +29,8 @@ namespace TotalCommander.Controls
 
         #region Properties
         public Model.MemoryItem SelectedItem => this.dataGrid.SelectedItem as Model.MemoryItem;
-        
+        public List<Model.MemoryItem> SelectedItems => this.dataGrid.SelectedItems.Cast<Model.MemoryItem>().ToList();
+        public Model.MemoryItem CurrentDirectory => (this.dataGrid.DataContext as Model.DataGridManager)?.CurrentDirectory;
         #endregion
 
         #region Events
@@ -38,7 +38,7 @@ namespace TotalCommander.Controls
         {
             if (this.dataGrid.SelectedItem is Model.MemoryItem item)
             {
-                (this.dataGrid.DataContext as Model.ListViewManager).Open(item);
+                (this.dataGrid.DataContext as Model.DataGridManager).Open(item);
             }
         }
         #endregion
@@ -46,7 +46,7 @@ namespace TotalCommander.Controls
         #region Public methods
         public void OpenDrive(in string driveName)
         {
-            (this.dataGrid.DataContext as Model.ListViewManager).Open(Model.ListViewManager.CreateChild(new DriveInfo(driveName)));
+            (this.dataGrid.DataContext as Model.DataGridManager).Open(Model.DataGridManager.CreateChild(new DriveInfo(driveName)));
         }
         #endregion
 

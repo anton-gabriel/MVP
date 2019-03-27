@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,15 +8,16 @@ namespace TotalCommander.Controls
     /// <summary>
     /// Interaction logic for FileTabItem.xaml
     /// </summary>
+    /// 
+    public enum FileTabType
+    {
+        InvalidType = 0,
+        TreeViewTab,
+        DataGridTab
+    }
+
     public partial class FileTabItem : UserControl
     {
-        public enum FileTabType
-        {
-            InvalidType = 0,
-            TreeViewTab,
-            DataGridTab
-        }
-
         public class TabHeader : INotifyPropertyChanged
         {
 
@@ -57,12 +59,14 @@ namespace TotalCommander.Controls
         }
 
 
-
         #region Properties
         public TabHeader Header { get; set; }
 
 
         public Model.MemoryItem SelectedItem => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.SelectedItem : null;
+        public List<Model.MemoryItem> SelectedItems => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.SelectedItems : null;
+        public Model.MemoryItem CurrentDirectory => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.CurrentDirectory : null;
+
         #endregion
 
         public FileTabItem()

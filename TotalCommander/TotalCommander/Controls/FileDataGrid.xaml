@@ -22,7 +22,7 @@
             SelectionChanged="DataGrid_SelectionChanged"
                     ItemsSource ="{Binding Data}">
             <DataGrid.DataContext>
-                <model:ListViewManager></model:ListViewManager>
+                <model:DataGridManager></model:DataGridManager>
             </DataGrid.DataContext>
 
             <DataGrid.Columns>

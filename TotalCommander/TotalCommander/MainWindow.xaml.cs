@@ -11,18 +11,13 @@ namespace TotalCommander
     /// </summary>
     public partial class MainWindow : Window
     {
-        public enum SelectedTab
-        {
-            None = 0,
-            Left,
-            Right
-        }
 
         List<ColumnDefinition> columnDefinitions;
         List<RowDefinition> rowDefinitions;
         bool verticalArrangement;
 
-        public SelectedTab Selected { get; set; } = SelectedTab.None;
+        public Controls.FileTab SelectedTab { get; set; } = null;
+        public Controls.FileTab UnselectedTab { get; set; } = null;
 
         private void InitializeGridDefinitions()
         {
@@ -53,6 +48,13 @@ namespace TotalCommander
         private void OnItemSelected(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem item = (e.OriginalSource as DataGrid)?.SelectedItem as Model.MemoryItem;
+
+            LoadButtons(item);
+            e.Handled = true;
+        }
+
+        private void LoadButtons(in Model.MemoryItem item)
+        {
             bool enabled = item != null;
 
             //Edit merge doar pe file
@@ -67,41 +69,30 @@ namespace TotalCommander
             this.viewButton.IsEnabled = enabled;
             this.copyButton.IsEnabled = enabled;
             this.moveButton.IsEnabled = enabled;
-            this.newFolderButton.IsEnabled = enabled;
+            this.newFolderButton.IsEnabled = SelectedTab?.SelectedTabItem.Header.TabType == Controls.FileTabType.DataGridTab;
             this.deleteButton.IsEnabled = enabled;
-
-            e.Handled = true;
         }
 
         private void RightControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Selected = SelectedTab.Right;
+            SelectedTab = this.rightControl;
+            UnselectedTab = this.leftControl;
+            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
             e.Handled = true;
         }
 
         private void LeftControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Selected = SelectedTab.Left;
+            SelectedTab = this.leftControl;
+            UnselectedTab = this.rightControl;
+            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
             e.Handled = true;
         }
 
         #region CommandMenu
         private void View_Button(object sender, RoutedEventArgs e)
         {
-            switch (Selected)
-            {
-                case SelectedTab.None:
-                    MessageBox.Show("No tab selected");
-                    break;
-                case SelectedTab.Left:
-                    Process.Start(this.leftControl.SelectedTabItem?.SelectedItem.Path);
-                    break;
-                case SelectedTab.Right:
-                    Process.Start(this.rightControl.SelectedTabItem?.SelectedItem.Path);
-                    break;
-                default:
-                    break;
-            }
+            Model.MemoryItem.ViewItems(SelectedTab.SelectedTabItem?.SelectedItems);
         }
 
         private void Edit_Button(object sender, RoutedEventArgs e)
@@ -111,22 +102,21 @@ namespace TotalCommander
 
         private void Copy_Button(object sender, RoutedEventArgs e)
         {
-
+            Model.MemoryItem.CopyItems(SelectedTab.SelectedTabItem?.SelectedItems,
+                UnselectedTab.SelectedTabItem?.CurrentDirectory);
         }
-
         private void Move_Button(object sender, RoutedEventArgs e)
         {
-
+            Model.MemoryItem.MoveItems(SelectedTab.SelectedTabItem?.SelectedItems,
+                UnselectedTab.SelectedTabItem?.CurrentDirectory);
         }
-
         private void NewFolder_Button(object sender, RoutedEventArgs e)
         {
-
+            Model.MemoryItem.CreateDirectory(SelectedTab.SelectedTabItem?.CurrentDirectory);
         }
-
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
-
+            Model.MemoryItem.DeleteItems(SelectedTab.SelectedTabItem?.SelectedItems);
         }
 
         #endregion
@@ -137,43 +127,16 @@ namespace TotalCommander
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
-
         private void FullView_Click(object sender, RoutedEventArgs e)
         {
-            switch (Selected)
-            {
-                case SelectedTab.None:
-                    MessageBox.Show("No tab selected");
-                    break;
-                case SelectedTab.Left:
-                    this.leftControl.SelectedTabItem?.ActivateDataGrid(@"C:\");
-                    break;
-                case SelectedTab.Right:
-                    this.rightControl.SelectedTabItem?.ActivateDataGrid(@"C:\");
-                    break;
-                default:
-                    break;
-            }
+            SelectedTab.SelectedTabItem?.ActivateDataGrid(@"C:\");
+            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
         }
-
         private void TreeView_Click(object sender, RoutedEventArgs e)
         {
-            switch (Selected)
-            {
-                case SelectedTab.None:
-                    MessageBox.Show("No tab selected");
-                    break;
-                case SelectedTab.Left:
-                    this.leftControl.SelectedTabItem?.ActivateTreeView();
-                    break;
-                case SelectedTab.Right:
-                    this.rightControl.SelectedTabItem?.ActivateTreeView();
-                    break;
-                default:
-                    break;
-            }
+            SelectedTab.SelectedTabItem?.ActivateTreeView();
+            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
         }
-
         private void VerticalView_Click(object sender, RoutedEventArgs e)
         {
             if (this.verticalArrangement)
@@ -195,25 +158,10 @@ namespace TotalCommander
                 this.verticalArrangement = true;
             }
         }
-
         private void NewTab_Click(object sender, RoutedEventArgs e)
         {
-            switch (Selected)
-            {
-                case SelectedTab.None:
-                    MessageBox.Show("No tab selected");
-                    break;
-                case SelectedTab.Left:
-                    this.leftControl.NewTab();
-                    break;
-                case SelectedTab.Right:
-                    this.rightControl.NewTab();
-                    break;
-                default:
-                    break;
-            }
+            SelectedTab.NewTab();
         }
-
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();

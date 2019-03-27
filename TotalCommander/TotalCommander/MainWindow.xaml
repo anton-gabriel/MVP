@@ -69,10 +69,10 @@
 
             <Button Grid.Column="0" IsEnabled="False" Name="viewButton" Click="View_Button">F3 View</Button>
             <Button Grid.Column="1" IsEnabled="False" Name="editButton" Click="Edit_Button">F4 Edit</Button>
-            <Button Grid.Column="2" IsEnabled="False" Name="copyButton" Click="Copy_Button">F2 Copy</Button>
-            <Button Grid.Column="3" IsEnabled="False" Name="moveButton" Click="Move_Button">F3 Move</Button>
-            <Button Grid.Column="4" IsEnabled="False" Name="newFolderButton" Click="NewFolder_Button">F4 New Folder</Button>
-            <Button Grid.Column="5" IsEnabled="False" Name="deleteButton" Click="Delete_Button">F5 Delete</Button>
+            <Button Grid.Column="2" IsEnabled="False" Name="copyButton" Click="Copy_Button">F5 Copy</Button>
+            <Button Grid.Column="3" IsEnabled="False" Name="moveButton" Click="Move_Button">F6 Move</Button>
+            <Button Grid.Column="4" IsEnabled="False" Name="newFolderButton" Click="NewFolder_Button">F7 New Folder</Button>
+            <Button Grid.Column="5" IsEnabled="False" Name="deleteButton" Click="Delete_Button">F8 Delete</Button>
         </Grid>
     </Grid>
 
