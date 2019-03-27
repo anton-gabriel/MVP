@@ -28,3 +28,5 @@ D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csprojAssem
 D:\GitHub\MVP\TotalCommander\TotalCommander\bin\Debug\TotalCommander.pdb
 D:\GitHub\MVP\TotalCommander\TotalCommander\bin\Debug\System.IO.Compression.dll
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.CopyComplete
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileComparator.g.cs
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\Controls\FileComparator.baml

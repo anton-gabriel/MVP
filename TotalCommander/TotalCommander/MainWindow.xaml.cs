@@ -182,11 +182,22 @@ namespace TotalCommander
         {
             Model.MemoryItem.PackItems(SelectedTab?.SelectedTabItem?.SelectedItems, UnselectedTab?.SelectedTabItem?.CurrentDirectory);
         }
-        #endregion
-
         private void Unpack_Click(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.UnpackItems(SelectedTab?.SelectedTabItem?.SelectedItems, UnselectedTab?.SelectedTabItem?.CurrentDirectory);
         }
+        private void Compare_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Title = "Compare by content",
+                Content = new Controls.FileComparator(leftControl.SelectedTabItem?.SelectedItem,
+                rightControl.SelectedTabItem?.SelectedItem)
+            };
+
+            window.ShowDialog();
+        }
+        #endregion
+
     }
 }

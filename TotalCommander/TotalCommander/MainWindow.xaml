@@ -23,8 +23,8 @@
         <Menu Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="Pack"  Name ="packMenuItem" Click="Pack_Click"/>
-                <MenuItem Header="Unpack" Name ="unpackMenuItem"  Click="Unpack_Click"/>
-                <MenuItem Header="Compare" Name="compareMenuItem"/>
+                <MenuItem Header="Unpack" Name ="unpackMenuItem" Click="Unpack_Click"/>
+                <MenuItem Header="Compare" Name="compareMenuItem" Click="Compare_Click"/>
                 <Separator/>
                 <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
