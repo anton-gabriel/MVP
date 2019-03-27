@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO.Compression;
 using System.Linq;
 using System.Windows.Media.Imaging;
 
@@ -68,7 +69,6 @@ namespace TotalCommander.Model
                 }
             }
         }
-
         public static void CopyItems(in List<MemoryItem> items, in MemoryItem destination)
         {
             if (destination == null)
@@ -185,6 +185,46 @@ namespace TotalCommander.Model
                             System.IO.Directory.Delete(memoryItem.Path, true);
                         }
                     }
+                }
+                catch (System.Exception exception)
+                {
+                    System.Console.WriteLine(exception.Message);
+                }
+            }
+        }
+
+        public static void PackItems(in List<MemoryItem> items, in MemoryItem destination)
+        {
+            string name = Utils.UserDialog.GetInputDialog(message: "Enter directory name", defaultResponse: items[0]?.Name + ".zip");
+            string path = destination.Path + "\\" + name;
+            if (System.IO.Directory.Exists(path))
+            {
+                Utils.UserDialog.MessageDialog($"Path {path} exists already", type: Utils.DialogType.Alert);
+                return;
+            }
+            using (ZipArchive archive = ZipFile.Open(path, ZipArchiveMode.Create))
+            {
+                foreach (MemoryItem memoryItem in items)
+                {
+                    try
+                    {
+                        archive.CreateEntryFromFile(memoryItem.Path, memoryItem.Name);
+                    }
+                    catch (System.Exception exception)
+                    {
+                        System.Console.WriteLine(exception.Message);
+                    }
+                }
+            }
+        }
+
+        public static void UnpackItems(in List<MemoryItem> items, in MemoryItem destination)
+        {
+            foreach (MemoryItem memoryItem in items)
+            {
+                try
+                {
+                    ZipFile.ExtractToDirectory(memoryItem.Path, destination.Path);
                 }
                 catch (System.Exception exception)
                 {

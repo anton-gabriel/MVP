@@ -166,8 +166,15 @@ namespace TotalCommander
         {
             Application.Current.Shutdown();
         }
-
+        private void Pack_Click(object sender, RoutedEventArgs e)
+        {
+            Model.MemoryItem.PackItems(SelectedTab?.SelectedTabItem?.SelectedItems, UnselectedTab?.SelectedTabItem?.CurrentDirectory);
+        }
         #endregion
 
+        private void Unpack_Click(object sender, RoutedEventArgs e)
+        {
+            Model.MemoryItem.UnpackItems(SelectedTab?.SelectedTabItem?.SelectedItems, UnselectedTab?.SelectedTabItem?.CurrentDirectory);
+        }
     }
 }
