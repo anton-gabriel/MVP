@@ -9,6 +9,8 @@
         xmlns:model="clr-namespace:TotalCommander.Model"
         xmlns:Controls="clr-namespace:TotalCommander.Controls"
         
+        KeyDown="Command_Keyboard"
+        
         Title="TotalCommander" Height="450" Width="800">
 
     <Grid>

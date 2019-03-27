@@ -74,8 +74,8 @@ namespace TotalCommander
 
             this.packMenuItem.IsEnabled = enabled;
             this.unpackMenuItem.IsEnabled = enabled;
-            this.compareMenuItem.IsEnabled = leftControl.SelectedTabItem?.SelectedItem != null &&
-                rightControl.SelectedTabItem?.SelectedItem != null;
+            this.compareMenuItem.IsEnabled = this.leftControl.SelectedTabItem?.SelectedItem != null &&
+                this.rightControl.SelectedTabItem?.SelectedItem != null;
             this.fullViewMenuItem.IsEnabled = SelectedTab != null;
             this.treeViewMenuItem.IsEnabled = SelectedTab != null;
             this.newTabMenuItem.IsEnabled = SelectedTab != null;
@@ -129,6 +129,52 @@ namespace TotalCommander
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.DeleteItems(SelectedTab.SelectedTabItem?.SelectedItems);
+        }
+        #endregion
+
+        #region Command Keyboard
+
+        private void Command_Keyboard(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case System.Windows.Input.Key.F3:
+                    if (this.viewButton.IsEnabled)
+                    {
+                        Model.MemoryItem.ViewItems(SelectedTab.SelectedTabItem?.SelectedItems);
+                    }
+                    break;
+                case System.Windows.Input.Key.F4:
+                    break;
+                case System.Windows.Input.Key.F5:
+                    if (this.copyButton.IsEnabled)
+                    {
+                        Model.MemoryItem.CopyItems(SelectedTab.SelectedTabItem?.SelectedItems,
+                        UnselectedTab.SelectedTabItem?.CurrentDirectory);
+                    }
+                    break;
+                case System.Windows.Input.Key.F6:
+                    if (this.moveButton.IsEnabled)
+                    {
+                        Model.MemoryItem.MoveItems(SelectedTab.SelectedTabItem?.SelectedItems,
+                        UnselectedTab.SelectedTabItem?.CurrentDirectory);
+                    }
+                    break;
+                case System.Windows.Input.Key.F7:
+                    if (this.newFolderButton.IsEnabled)
+                    {
+                        Model.MemoryItem.CreateDirectory(SelectedTab.SelectedTabItem?.CurrentDirectory);
+                    }
+                    break;
+                case System.Windows.Input.Key.F8:
+                    if (this.deleteButton.IsEnabled)
+                    {
+                        Model.MemoryItem.DeleteItems(SelectedTab.SelectedTabItem?.SelectedItems);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         #endregion
@@ -191,13 +237,15 @@ namespace TotalCommander
             Window window = new Window
             {
                 Title = "Compare by content",
-                Content = new Controls.FileComparator(leftControl.SelectedTabItem?.SelectedItem,
-                rightControl.SelectedTabItem?.SelectedItem)
+                Content = new Controls.FileComparator(this.leftControl.SelectedTabItem?.SelectedItem,
+                this.rightControl.SelectedTabItem?.SelectedItem)
             };
 
             window.ShowDialog();
         }
+
         #endregion
+
 
     }
 }
