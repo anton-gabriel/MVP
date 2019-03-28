@@ -49,7 +49,6 @@ namespace TotalCommander
         private void OnItemSelected(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem item = (e.OriginalSource as DataGrid)?.SelectedItem as Model.MemoryItem;
-
             LoadButtons(item);
             e.Handled = true;
         }

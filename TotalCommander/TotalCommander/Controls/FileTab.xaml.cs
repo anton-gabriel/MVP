@@ -14,8 +14,6 @@ namespace TotalCommander.Controls
         public FileTab()
         {
             InitializeComponent();
-
-            AddHandler(Controls.FileDataGrid.ItemSelectedEvent, new RoutedEventHandler(OnItemSelected));
         }
 
         #region Properties
@@ -23,13 +21,10 @@ namespace TotalCommander.Controls
         #endregion
 
         #region Events
-        private void OnItemSelected(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(SelectedTabItem?.SelectedItem?.ToString());
-        }
         private void OnTabChanged(object sender, SelectionChangedEventArgs e)
         {
             (sender as FrameworkElement)?.RaiseEvent(new RoutedEventArgs(FileDataGrid.ItemSelectedEvent));
+            e.Handled = true;
         }
         #endregion
 

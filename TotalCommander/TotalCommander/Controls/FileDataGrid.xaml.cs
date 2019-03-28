@@ -66,7 +66,6 @@ namespace TotalCommander.Controls
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("S-a apelat selection");
             e.Handled = true;
             (sender as FrameworkElement)?.RaiseEvent(new RoutedEventArgs(ItemSelectedEvent));
         }
