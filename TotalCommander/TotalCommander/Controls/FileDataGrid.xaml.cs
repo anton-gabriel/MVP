@@ -60,7 +60,7 @@ namespace TotalCommander.Controls
 
         public void Refresh()
         {
-            (this.dataGrid.DataContext as Model.DataGridManager).Refresh();
+            (this.dataGrid.DataContext as Model.DataGridManager)?.Refresh();
         }
         #endregion
 

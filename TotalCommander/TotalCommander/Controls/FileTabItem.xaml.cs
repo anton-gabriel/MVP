@@ -82,17 +82,26 @@ namespace TotalCommander.Controls
         #region Events
         private void LoadDrive_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string driveName = (this.comboBox.SelectedItem as Model.Drive).Name;
+            string driveName = (this.loadDrivecomboBox.SelectedItem as Model.Drive).Name;
 
             ActivateDataGrid(driveName);
+            e.Handled = true;
+        }
+        private void SizeRepresentation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Model.MemoryItem.Representation = (Model.MemoryItem.SizeRepresentation)this.sizeRepresentationComboBox.SelectedItem;
+            Refresh();
+            e.Handled = true;
         }
         private void Back(object sender, RoutedEventArgs e)
         {
             this.fileDataGrid.Back();
+            e.Handled = true;
         }
         private void Forward(object sender, RoutedEventArgs e)
         {
             this.fileDataGrid.Next();
+            e.Handled = true;
         }
         #endregion
 
@@ -117,10 +126,9 @@ namespace TotalCommander.Controls
             Header.TabType = FileTabType.DataGridTab;
             RaiseEvent(new RoutedEventArgs(FileDataGrid.ItemSelectedEvent));
         }
-
         public void Refresh()
         {
-            this.fileDataGrid.Refresh();
+            this.fileDataGrid?.Refresh();
         }
         #endregion
 

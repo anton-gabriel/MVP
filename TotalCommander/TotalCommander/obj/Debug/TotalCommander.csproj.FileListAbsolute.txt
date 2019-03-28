@@ -25,3 +25,4 @@ D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.Core
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.CopyComplete
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.exe
 D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.pdb
+D:\GitHub\MVP\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csprojAssemblyReference.cache

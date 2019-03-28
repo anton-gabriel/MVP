@@ -20,12 +20,12 @@
             </Grid.RowDefinitions>
 
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
 
                 <ComboBox
-                    Grid.Row="0"
                     ItemsSource="{Binding Drives}"
-                    Name="comboBox"
+                    SelectedIndex="0"
+                    Name="loadDrivecomboBox"
                     SelectionChanged="LoadDrive_SelectionChanged"
                     Margin="3"
                     Width="100">
@@ -43,7 +43,17 @@
                     </ComboBox.DataContext>
                 </ComboBox>
 
-                <StackPanel  ToolBarTray.IsLocked="True" Orientation="Horizontal">
+
+                <ComboBox
+                    ItemsSource="{Binding Source={x:Static model:MemoryItem.SizeRepresentations}}"
+                    SelectedIndex="0"
+                    Name="sizeRepresentationComboBox"
+                    SelectionChanged="SizeRepresentation_SelectionChanged"
+                    Margin="3"
+                    Width="Auto">
+                </ComboBox>
+
+                <StackPanel ToolBarTray.IsLocked="True" Orientation="Horizontal" Margin="3">
                     <Button BorderThickness="0" Background="Transparent" Click="Back">
                         <Image Source="../Images/left_arrow.png" Width="20"/>
                     </Button>

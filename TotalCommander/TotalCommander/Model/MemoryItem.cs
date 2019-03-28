@@ -19,12 +19,21 @@ namespace TotalCommander.Model
         }
 
         private const string separator = " ";
-        public static SizeRepresentation sizeRepresentation;
+        public static SizeRepresentation Representation { get; set; }
+        public static List<SizeRepresentation> SizeRepresentations { get; }
 
         #region Constructors
         static MemoryItem()
         {
-            sizeRepresentation = SizeRepresentation.B;
+            Representation = SizeRepresentation.B;
+            SizeRepresentations = new List<SizeRepresentation>()
+            {
+                SizeRepresentation.B,
+                SizeRepresentation.KB,
+                SizeRepresentation.MB,
+                SizeRepresentation.GB,
+                SizeRepresentation.TB
+            };
         }
         public MemoryItem(in string name, in string type, in string path, double size, in System.DateTime date)
         {
@@ -47,8 +56,8 @@ namespace TotalCommander.Model
         public string Name { get; set; }
         public string Type { get; set; }
         public System.DateTime Date { get; set; }
-        public string Size => (this.size / System.Math.Pow(1024, (uint)sizeRepresentation)).ToString() +
-                    separator + sizeRepresentation.ToString();
+        public string Size => (this.size / System.Math.Pow(1024, (uint)Representation)).ToString() +
+                    separator + Representation.ToString();
         public MemoryItem Parent { get; set; }
         #endregion
 
@@ -95,13 +104,13 @@ namespace TotalCommander.Model
                     }
                     else if (memoryItem is Directory)
                     {
-                        //Now Create all of the directories
+                        //Create all of the directories
                         foreach (string dirPath in System.IO.Directory.GetDirectories(memoryItem.Path, "*", SearchOption.AllDirectories))
                         {
                             System.IO.Directory.CreateDirectory(dirPath.Replace(memoryItem.Path, destination.Path + "//" + memoryItem.Name));
                         }
 
-                        //Copy all the files & Replaces any files with the same name
+                        //Copy all the files
                         foreach (string newPath in System.IO.Directory.GetFiles(memoryItem.Path, "*.*", SearchOption.AllDirectories))
                         {
                             System.IO.File.Copy(newPath, newPath.Replace(memoryItem.Path, destination.Path + "//" + memoryItem.Name), false);
