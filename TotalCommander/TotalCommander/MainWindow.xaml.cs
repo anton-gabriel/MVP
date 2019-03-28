@@ -45,6 +45,7 @@ namespace TotalCommander
             this.verticalArrangement = false;
         }
 
+        #region Events
         private void OnItemSelected(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem item = (e.OriginalSource as DataGrid)?.SelectedItem as Model.MemoryItem;
@@ -52,7 +53,27 @@ namespace TotalCommander
             LoadButtons(item);
             e.Handled = true;
         }
+        private void RightControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            SelectedTab = this.rightControl;
+            SelectedTab.Enable();
+            UnselectedTab = this.leftControl;
+            UnselectedTab.Disable();
+            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
+            e.Handled = true;
+        }
+        private void LeftControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            SelectedTab = this.leftControl;
+            SelectedTab.Enable();
+            UnselectedTab = this.rightControl;
+            UnselectedTab.Disable();
+            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
+            e.Handled = true;
+        }
+        #endregion
 
+        #region Private methods
         private void LoadButtons(in Model.MemoryItem item)
         {
             bool enabled = item != null && SelectedTab != null;
@@ -80,26 +101,12 @@ namespace TotalCommander
             this.treeViewMenuItem.IsEnabled = SelectedTab != null;
             this.newTabMenuItem.IsEnabled = SelectedTab != null;
         }
-
-        private void RightControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Refresh()
         {
-            SelectedTab = this.rightControl;
-            SelectedTab.Enable();
-            UnselectedTab = this.leftControl;
-            UnselectedTab.Disable();
-            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
-            e.Handled = true;
+            UnselectedTab?.SelectedTabItem?.Refresh();
+            SelectedTab?.SelectedTabItem?.Refresh();
         }
-
-        private void LeftControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            SelectedTab = this.leftControl;
-            SelectedTab.Enable();
-            UnselectedTab = this.rightControl;
-            UnselectedTab.Disable();
-            LoadButtons(SelectedTab.SelectedTabItem?.SelectedItem);
-            e.Handled = true;
-        }
+        #endregion
 
         #region CommandMenu
         private void View_Button(object sender, RoutedEventArgs e)
@@ -116,19 +123,23 @@ namespace TotalCommander
         {
             Model.MemoryItem.CopyItems(SelectedTab.SelectedTabItem?.SelectedItems,
                 UnselectedTab.SelectedTabItem?.CurrentDirectory);
+            Refresh();
         }
         private void Move_Button(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.MoveItems(SelectedTab.SelectedTabItem?.SelectedItems,
                 UnselectedTab.SelectedTabItem?.CurrentDirectory);
+            Refresh();
         }
         private void NewFolder_Button(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.CreateDirectory(SelectedTab.SelectedTabItem?.CurrentDirectory);
+            Refresh();
         }
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.DeleteItems(SelectedTab.SelectedTabItem?.SelectedItems);
+            Refresh();
         }
         #endregion
 
@@ -227,10 +238,12 @@ namespace TotalCommander
         private void Pack_Click(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.PackItems(SelectedTab?.SelectedTabItem?.SelectedItems, UnselectedTab?.SelectedTabItem?.CurrentDirectory);
+            Refresh();
         }
         private void Unpack_Click(object sender, RoutedEventArgs e)
         {
             Model.MemoryItem.UnpackItems(SelectedTab?.SelectedTabItem?.SelectedItems, UnselectedTab?.SelectedTabItem?.CurrentDirectory);
+            Refresh();
         }
         private void Compare_Click(object sender, RoutedEventArgs e)
         {

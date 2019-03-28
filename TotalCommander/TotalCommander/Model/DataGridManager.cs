@@ -35,7 +35,7 @@ namespace TotalCommander.Model
             if (obj is DirectoryInfo)
             {
                 DirectoryInfo directoryInfo = obj as DirectoryInfo;
-                item = new Model.Directory(directoryInfo.Name, directoryInfo.Extension, directoryInfo.FullName,directoryInfo.CreationTime);
+                item = new Model.Directory(directoryInfo.Name, directoryInfo.Extension, directoryInfo.FullName, directoryInfo.CreationTime);
             }
             if (obj is DriveInfo)
             {
@@ -45,17 +45,32 @@ namespace TotalCommander.Model
             return item;
         }
 
+
         public void Open(in MemoryItem item)
+        {
+            if (this.forward.Count != 0)
+            {
+                if (item.Path != this.forward.Peek().Path)
+                {
+                    this.forward.Clear();
+                }
+            }
+            OpenMemoryItem(item);
+        }
+
+        private void OpenMemoryItem(in MemoryItem item)
         {
             try
             {
-                string path = item.Path;
-                FileAttributes attr = System.IO.File.GetAttributes(path);
+                if (!(item is Drive))
+                {
+                    this.backward.Push(item);
+                }
+                FileAttributes attr = System.IO.File.GetAttributes(item.Path);
                 if (attr.HasFlag(FileAttributes.Directory))
                 {
                     CurrentDirectory = item as MemoryItem;
-                    this.backward.Push(item);
-                    DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                    DirectoryInfo directoryInfo = new DirectoryInfo(item.Path);
                     List<MemoryItem> items = new List<MemoryItem>();
 
                     foreach (DirectoryInfo dir in directoryInfo.GetDirectories())
@@ -86,7 +101,7 @@ namespace TotalCommander.Model
             if (this.backward.Count != 0)
             {
                 this.forward.Push(this.backward.Peek());
-                Open(this.backward.Pop().Parent);
+                OpenMemoryItem(this.backward.Pop().Parent);
             }
         }
 
@@ -94,7 +109,14 @@ namespace TotalCommander.Model
         {
             if (this.forward.Count != 0)
             {
-                Open(this.forward.Pop());
+                OpenMemoryItem(this.forward.Pop());
+            }
+        }
+        public void Refresh()
+        {
+            if (CurrentDirectory != null)
+            {
+                Open(CurrentDirectory);
             }
         }
         #endregion

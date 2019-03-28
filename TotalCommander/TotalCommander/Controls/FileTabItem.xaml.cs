@@ -66,7 +66,6 @@ namespace TotalCommander.Controls
         public Model.MemoryItem SelectedItem => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.SelectedItem : null;
         public List<Model.MemoryItem> SelectedItems => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.SelectedItems : null;
         public Model.MemoryItem CurrentDirectory => Header.TabType == FileTabType.DataGridTab ? this.fileDataGrid.CurrentDirectory : null;
-
         #endregion
 
         public FileTabItem()
@@ -117,6 +116,11 @@ namespace TotalCommander.Controls
             Header.CurrentDrive = driveName;
             Header.TabType = FileTabType.DataGridTab;
             RaiseEvent(new RoutedEventArgs(FileDataGrid.ItemSelectedEvent));
+        }
+
+        public void Refresh()
+        {
+            this.fileDataGrid.Refresh();
         }
         #endregion
 

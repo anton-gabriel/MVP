@@ -57,6 +57,11 @@ namespace TotalCommander.Controls
         {
             (this.dataGrid.DataContext as Model.DataGridManager).Next();
         }
+
+        public void Refresh()
+        {
+            (this.dataGrid.DataContext as Model.DataGridManager).Refresh();
+        }
         #endregion
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
