@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Windows.Media.Imaging;
@@ -94,8 +95,17 @@ namespace TotalCommander.Model
                     }
                     else if (memoryItem is Directory)
                     {
-                        new Microsoft.VisualBasic.Devices.Computer().
-                            FileSystem.CopyDirectory(memoryItem.Path, destination.Path);
+                        //Now Create all of the directories
+                        foreach (string dirPath in System.IO.Directory.GetDirectories(memoryItem.Path, "*", SearchOption.AllDirectories))
+                        {
+                            System.IO.Directory.CreateDirectory(dirPath.Replace(memoryItem.Path, destination.Path + "//" + memoryItem.Name));
+                        }
+
+                        //Copy all the files & Replaces any files with the same name
+                        foreach (string newPath in System.IO.Directory.GetFiles(memoryItem.Path, "*.*", SearchOption.AllDirectories))
+                        {
+                            System.IO.File.Copy(newPath, newPath.Replace(memoryItem.Path, destination.Path + "//" + memoryItem.Name), false);
+                        }
                     }
                 }
                 catch (System.Exception exception)
@@ -197,7 +207,6 @@ namespace TotalCommander.Model
 
         public static void PackItems(in List<MemoryItem> items, in MemoryItem destination)
         {
-            
             string name = Utils.UserDialog.GetInputDialog(message: "Enter directory name", defaultResponse: System.IO.Path.GetFileNameWithoutExtension(items[0]?.Path) + ".zip");
             string path = destination.Path + "\\" + name;
             if (System.IO.Directory.Exists(path))

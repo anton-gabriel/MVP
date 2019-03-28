@@ -65,14 +65,6 @@
       <DependentUpon>FileComparator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\UserDialog.cs" />
-    <Page Include="Controls\AppMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\CommandMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\FileComparator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,12 +92,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controls\AppMenu.xaml.cs">
-      <DependentUpon>AppMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CommandMenu.xaml.cs">
-      <DependentUpon>CommandMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\FileDataGrid.xaml.cs">
       <DependentUpon>FileDataGrid.xaml</DependentUpon>
