@@ -1,13 +1,11 @@
-﻿using System.Drawing.Imaging;
-using System.IO;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 
 namespace TotalCommander.Model
 {
     public class Directory : MemoryItem
     {
-        public Directory(in string name, in string type, in string path)
-            : base(name, "Folder", path, double.NaN)
+        public Directory(in string name, in string type, in string path, in System.DateTime date)
+            : base(name, "Folder", path, double.NaN, date)
         {
 
         }

@@ -55,7 +55,7 @@ namespace TotalCommander
 
         private void LoadButtons(in Model.MemoryItem item)
         {
-            bool enabled = item != null;
+            bool enabled = item != null && SelectedTab != null;
 
             //Edit merge doar pe file
             if (item is Model.File)

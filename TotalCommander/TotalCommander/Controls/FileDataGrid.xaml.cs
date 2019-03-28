@@ -48,6 +48,15 @@ namespace TotalCommander.Controls
         {
             (this.dataGrid.DataContext as Model.DataGridManager).Open(Model.DataGridManager.CreateChild(new DriveInfo(driveName)));
         }
+        public void Back()
+        {
+            (this.dataGrid.DataContext as Model.DataGridManager).Back();
+        }
+
+        public void Next()
+        {
+            (this.dataGrid.DataContext as Model.DataGridManager).Next();
+        }
         #endregion
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

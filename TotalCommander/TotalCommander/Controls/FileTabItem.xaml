@@ -20,27 +20,39 @@
             </Grid.RowDefinitions>
 
 
+            <StackPanel Orientation="Horizontal">
 
-            <ComboBox
+                <ComboBox
                     Grid.Row="0"
                     ItemsSource="{Binding Drives}"
                     Name="comboBox"
                     SelectionChanged="LoadDrive_SelectionChanged"
                     Margin="3"
                     Width="100">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Image}" Width="20"/>
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Image}" Width="20"/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
 
-                <ComboBox.DataContext>
-                    <model:DriveList></model:DriveList>
-                </ComboBox.DataContext>
-            </ComboBox>
+                    <ComboBox.DataContext>
+                        <model:DriveList></model:DriveList>
+                    </ComboBox.DataContext>
+                </ComboBox>
+
+                <StackPanel  ToolBarTray.IsLocked="True" Orientation="Horizontal">
+                    <Button BorderThickness="0" Background="Transparent" Click="Back">
+                        <Image Source="../Images/left_arrow.png" Width="20"/>
+                    </Button>
+                    <Button BorderThickness="0" Background="Transparent" Click="Forward">
+                        <Image Source="../Images/right_arrow.png" Width="20"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
 
             <local:FileTreeView Grid.Row="1" Grid.Column="0" x:Name="fileTreeView"></local:FileTreeView>
 

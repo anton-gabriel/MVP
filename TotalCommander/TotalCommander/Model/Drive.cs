@@ -5,7 +5,7 @@ namespace TotalCommander.Model
     public class Drive : MemoryItem
     {
         public Drive(in string name, in string path, double size)
-            : base(name, "Drive", path, size)
+            : base(name, "Drive", path, size, System.DateTime.MinValue)
         {
 
         }

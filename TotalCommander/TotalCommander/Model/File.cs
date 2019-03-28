@@ -4,8 +4,8 @@ namespace TotalCommander.Model
 {
     public class File : MemoryItem
     {
-        public File(in string name, in string type, in string path, double size)
-            : base(name, type, path, size)
+        public File(in string name, in string type, in string path, double size, in System.DateTime date)
+            : base(name, type, path, size, date)
         {
 
         }

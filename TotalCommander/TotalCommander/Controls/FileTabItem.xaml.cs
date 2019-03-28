@@ -87,8 +87,15 @@ namespace TotalCommander.Controls
 
             ActivateDataGrid(driveName);
         }
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            this.fileDataGrid.Back();
+        }
+        private void Forward(object sender, RoutedEventArgs e)
+        {
+            this.fileDataGrid.Next();
+        }
         #endregion
-
 
         #region Public methods
         public void ActivateTreeView()
@@ -112,5 +119,6 @@ namespace TotalCommander.Controls
             RaiseEvent(new RoutedEventArgs(FileDataGrid.ItemSelectedEvent));
         }
         #endregion
+
     }
 }

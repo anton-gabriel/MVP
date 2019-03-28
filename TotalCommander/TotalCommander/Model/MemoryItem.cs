@@ -25,11 +25,12 @@ namespace TotalCommander.Model
         {
             sizeRepresentation = SizeRepresentation.B;
         }
-        public MemoryItem(in string name, in string type, in string path, double size)
+        public MemoryItem(in string name, in string type, in string path, double size, in System.DateTime date)
         {
             Name = name;
             Type = type;
             Path = path;
+            Date = date;
             Image = GetImage(Path);
             this.size = size;
         }
@@ -44,6 +45,7 @@ namespace TotalCommander.Model
         public string Path { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public System.DateTime Date { get; set; }
         public string Size => (this.size / System.Math.Pow(1024, (uint)sizeRepresentation)).ToString() +
                     separator + sizeRepresentation.ToString();
         public MemoryItem Parent { get; set; }
@@ -195,7 +197,8 @@ namespace TotalCommander.Model
 
         public static void PackItems(in List<MemoryItem> items, in MemoryItem destination)
         {
-            string name = Utils.UserDialog.GetInputDialog(message: "Enter directory name", defaultResponse: items[0]?.Name + ".zip");
+            
+            string name = Utils.UserDialog.GetInputDialog(message: "Enter directory name", defaultResponse: System.IO.Path.GetFileNameWithoutExtension(items[0]?.Path) + ".zip");
             string path = destination.Path + "\\" + name;
             if (System.IO.Directory.Exists(path))
             {

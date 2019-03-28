@@ -11,7 +11,7 @@
         
         KeyDown="Command_Keyboard"
         
-        Title="TotalCommander" Height="450" Width="800">
+        Title="TotalCommander" Height="600" Width="1200">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -42,11 +42,13 @@
             <MenuItem Header="Help">
                 <MenuItem Header="Anton Gabriel" IsEnabled="False"/>
                 <MenuItem Header="10LF371" IsEnabled="False"/>
-                <Hyperlink Name="Link" RequestNavigate="OpenLink" NavigateUri="https://student.unitbv.ro/">
+                <Hyperlink Name="Link" RequestNavigate="OpenLink" NavigateUri="mailto:gabriel.anton@student.unitbv.ro">
                     gabriel.anton@student.unitbv.ro
                 </Hyperlink>
             </MenuItem>
         </Menu>
+
+      
 
         <Grid Grid.Row="1" Name="CentralGrid" >
 

@@ -23,15 +23,6 @@ namespace TotalCommander.Model
         private Stack<MemoryItem> forward;
         #endregion
 
-        #region Private methods
-        private void Initialize()
-        {
-            Data = new ObservableCollection<MemoryItem>();
-            this.backward = new Stack<MemoryItem>();
-            this.forward = new Stack<MemoryItem>();
-        }
-        #endregion
-
         #region Public methods
         public static MemoryItem CreateChild(object obj)
         {
@@ -39,12 +30,12 @@ namespace TotalCommander.Model
             if (obj is FileInfo)
             {
                 FileInfo fileInfo = obj as FileInfo;
-                item = new Model.File(fileInfo.Name, fileInfo.Extension, fileInfo.FullName, fileInfo.Length);
+                item = new Model.File(fileInfo.Name, fileInfo.Extension, fileInfo.FullName, fileInfo.Length, fileInfo.CreationTime);
             }
             if (obj is DirectoryInfo)
             {
                 DirectoryInfo directoryInfo = obj as DirectoryInfo;
-                item = new Model.Directory(directoryInfo.Name, directoryInfo.Extension, directoryInfo.FullName);
+                item = new Model.Directory(directoryInfo.Name, directoryInfo.Extension, directoryInfo.FullName,directoryInfo.CreationTime);
             }
             if (obj is DriveInfo)
             {
@@ -109,6 +100,12 @@ namespace TotalCommander.Model
         #endregion
 
         #region Private methods
+        private void Initialize()
+        {
+            Data = new ObservableCollection<MemoryItem>();
+            this.backward = new Stack<MemoryItem>();
+            this.forward = new Stack<MemoryItem>();
+        }
         private void LoadNewData(in List<MemoryItem> items)
         {
             Data.Clear();
