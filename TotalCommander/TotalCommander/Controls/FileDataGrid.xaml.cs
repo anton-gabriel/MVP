@@ -46,7 +46,7 @@ namespace TotalCommander.Controls
         #region Public methods
         public void OpenDrive(in string driveName)
         {
-            (this.dataGrid.DataContext as Model.DataGridManager).Open(Model.DataGridManager.CreateChild(new DriveInfo(driveName)));
+            (this.dataGrid.DataContext as Model.DataGridManager).OpenMemoryItem(Model.DataGridManager.CreateChild(new DriveInfo(driveName)));
         }
         public void Back()
         {

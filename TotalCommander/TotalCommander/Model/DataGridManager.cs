@@ -48,24 +48,24 @@ namespace TotalCommander.Model
 
         public void Open(in MemoryItem item)
         {
-            if (this.forward.Count != 0)
+            //if (this.forward.Count != 0)
+            //{
+            //    if (item.Path != this.forward.Peek().Path)
+            //    {
+            //        this.forward.Clear();
+            //    }
+            //}
+            if (!(item is Drive))
             {
-                if (item.Path != this.forward.Peek().Path)
-                {
-                    this.forward.Clear();
-                }
+                this.backward.Push(item);
             }
             OpenMemoryItem(item);
         }
 
-        private void OpenMemoryItem(in MemoryItem item)
+        public void OpenMemoryItem(in MemoryItem item)
         {
             try
             {
-                if (!(item is Drive))
-                {
-                    this.backward.Push(item);
-                }
                 FileAttributes attr = System.IO.File.GetAttributes(item.Path);
                 if (attr.HasFlag(FileAttributes.Directory))
                 {
@@ -81,7 +81,6 @@ namespace TotalCommander.Model
                     }
                     foreach (FileInfo file in directoryInfo.GetFiles())
                     {
-
                         MemoryItem child = CreateChild(file);
                         child.Parent = item;
                         items.Add(child);
@@ -100,23 +99,23 @@ namespace TotalCommander.Model
         {
             if (this.backward.Count != 0)
             {
-                this.forward.Push(this.backward.Peek());
+                //this.forward.Push(this.backward.Peek());
                 OpenMemoryItem(this.backward.Pop().Parent);
             }
         }
 
         public void Next()
         {
-            if (this.forward.Count != 0)
-            {
-                OpenMemoryItem(this.forward.Pop());
-            }
+            //if (this.forward.Count != 0)
+            //{
+            //    OpenMemoryItem(this.forward.Pop());
+            //}
         }
         public void Refresh()
         {
             if (CurrentDirectory != null)
             {
-                Open(CurrentDirectory);
+                OpenMemoryItem(CurrentDirectory);
             }
         }
         #endregion

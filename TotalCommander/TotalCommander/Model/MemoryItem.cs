@@ -56,7 +56,7 @@ namespace TotalCommander.Model
         public string Name { get; set; }
         public string Type { get; set; }
         public System.DateTime Date { get; set; }
-        public string Size => (this.size / System.Math.Pow(1024, (uint)Representation)).ToString() +
+        public string Size => System.Math.Round((this.size / System.Math.Pow(1024, (uint)Representation))).ToString() +
                     separator + Representation.ToString();
         public MemoryItem Parent { get; set; }
         #endregion
@@ -251,6 +251,7 @@ namespace TotalCommander.Model
                 {
                     System.Console.WriteLine(exception.Message);
                 }
+                
             }
         }
         #endregion
