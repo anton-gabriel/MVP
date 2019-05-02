@@ -23,6 +23,10 @@ namespace Sudoku
         public MainWindow()
         {
             InitializeComponent();
+            Models.Board.Piece piece = new Models.Board.Piece
+            {
+                Value = 10
+            };
         }
     }
 }
