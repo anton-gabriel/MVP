@@ -57,9 +57,6 @@
                     <Button BorderThickness="0" Background="Transparent" Click="Back">
                         <Image Source="../Images/left_arrow.png" Width="20"/>
                     </Button>
-                    <Button BorderThickness="0" Background="Transparent" Click="Forward">
-                        <Image Source="../Images/right_arrow.png" Width="20"/>
-                    </Button>
                 </StackPanel>
             </StackPanel>
 
