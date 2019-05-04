@@ -15,10 +15,10 @@ namespace Sudoku.ViewModels
         {
             //hardcoded
             List<List<Piece>> pieces = new List<List<Piece>>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 9; i++)
             {
                 List<Piece> list = new List<Piece>();
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 9; j++)
                 {
                     list.Add(new Piece { Value = (uint) (i+j), Enabled = true });
                 }
@@ -26,7 +26,17 @@ namespace Sudoku.ViewModels
             }
 
             Board = BoardConverter.ToBoard(pieces);
-            MessageBox.Show(BoardChecker.CheckBoard(board: Board).ToString());
+            List<List<Piece>> boardPieces = BoardConverter.FromBoard(Board);
+            string text = "";
+            foreach (var line in boardPieces)
+            {
+                foreach (var item in line)
+                {
+                    text += item.Value.ToString() + " ";
+                }
+                text += System.Environment.NewLine;
+            }
+            MessageBox.Show(text);
         }
         #endregion
 

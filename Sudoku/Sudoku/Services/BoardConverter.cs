@@ -8,6 +8,7 @@ namespace Sudoku.Services
 {
     internal static class BoardConverter
     {
+        #region Public methods
         public static Board ToBoard(List<List<Piece>> pieces)
         {
             int size = pieces.Count;
@@ -35,7 +36,21 @@ namespace Sudoku.Services
         }
         public static List<List<Piece>> FromBoard(Board board)
         {
-            return new List<List<Piece>>();
+            List<List<Piece>> pieces = new List<List<Piece>>();
+            foreach (var line in board.Squares)
+            {
+                for (int lineIndex = 0; lineIndex < board.Size; ++lineIndex)
+                {
+                    List<Piece> linePieces = new List<Piece>();
+                    foreach (var square in line)
+                    {
+                        linePieces.AddRange(square.GetLine(lineIndex));
+                    }
+                    pieces.Add(linePieces);
+                }
+            }
+            return pieces;
         }
+        #endregion
     }
 }
