@@ -87,8 +87,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Grid Name="Board"
-                  Grid.Column="0"
+            <Grid Name="Board" Grid.Column="0"
                   Margin="10px">
                 <ItemsControl ItemsSource="{Binding Path = Squares}" 
                               HorizontalAlignment="Center"
@@ -113,8 +112,7 @@
 
             </Grid>
 
-            <Grid Name="Buttons"
-                  Grid.Column="1">
+            <Grid Name="Buttons" Grid.Column="1">
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -130,7 +128,7 @@
                         <Grid>
                             <Button Content="Generate"
                             Style="{StaticResource defaulButton}"
-                            Command="{Binding GenerateBoardCommand }"/>
+                            Command="{Binding Path = GenerateBoardCommand }"/>
                         </Grid>
                     </Border>
                 </StackPanel>

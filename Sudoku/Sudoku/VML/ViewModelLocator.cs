@@ -25,6 +25,7 @@ namespace Sudoku.VML
 
         #region ViewModels
         public BoardViewModel BoardVM => CreateViewModel<BoardViewModel>();
+        public UserViewModel UserVM => CreateViewModel<UserViewModel>();
         #endregion
     }
 }
