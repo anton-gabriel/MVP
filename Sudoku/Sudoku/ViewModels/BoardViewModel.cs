@@ -1,91 +1,112 @@
 ﻿using Sudoku.Commands;
 using Sudoku.Models.Board;
 using Sudoku.Services;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Sudoku.ViewModels
 {
-    class BoardViewModel
+    internal class BoardViewModel : Models.Utils.NotifyPropertyChanged
     {
         #region Constructors
         public BoardViewModel()
         {
-            //hardcoded
-            List<List<Piece>> pieces = new List<List<Piece>>();
-            for (int i = 0; i < 9; i++)
-            {
-                List<Piece> list = new List<Piece>();
-                for (int j = 0; j < 9; j++)
-                {
-                    list.Add(new Piece { Value = (uint) (i+j), Enabled = true });
-                }
-                pieces.Add(list);
-            }
-
-            Board = BoardConverter.ToBoard(pieces);
-            List<List<Piece>> boardPieces = BoardConverter.FromBoard(Board);
-            string text = "";
-            foreach (var line in boardPieces)
-            {
-                foreach (var item in line)
-                {
-                    text += item.Value.ToString() + " ";
-                }
-                text += System.Environment.NewLine;
-            }
-            MessageBox.Show(text);
+            this.board = new Board();
         }
         #endregion
 
         #region Private fields
-        uint boardSize;
+        private int newBoardSize;
+        private readonly Board board;
         #endregion
 
         #region Properties
-        public Board Board { get; set; }
         public ObservableCollection<ObservableCollection<Square>> Squares
         {
-            get => Board.Squares;
-            set => Board.Squares = value;
-        }
-        public uint BoardSize
-        {
-            get => this.boardSize;
+            get => this.board?.Squares;
             set
             {
-                this.boardSize = value;
-                CanGenerate = BoardChecker.IsBoardSizeValid(size: BoardSize);
+                this.board.Squares = value;
+                OnPropertyChanged(propertyName: nameof(Squares));
             }
         }
-        public bool CanGenerate { get; set; }
+        public int BoardSize
+        {
+            get => this.newBoardSize;
+            set
+            {
+                this.newBoardSize = value;
+                CanGenerate = BoardChecker.IsBoardSizeValid(size: value);
+            }
+        }
+
+
+        public bool CanGenerate { get; set; } = false;
         #endregion
 
         #region Commands
-        ICommand generate;
-        public ICommand Generate
+        ICommand generateBoardCommand;
+        public ICommand GenerateBoardCommand
         {
             get
             {
-                if (this.generate == null)
+                if (this.generateBoardCommand == null)
                 {
-                    this.generate = new RelayCommand(param => CanGenerate, param => LoadBoard());
+                    this.generateBoardCommand = new RelayCommand(param => CanGenerate, param => GenerateBoard());
                 }
-                return this.generate;
+                return this.generateBoardCommand;
             }
         }
-        //De adaugat comanda pentru load - care va incarca jocul din fisierul asociat jucatorului curent
-        //                          check - care va verifica daca jocul curent e gata
-        //                          start - care va incepe jocul (timer-ul)
+
+        //ICommand startGameCommand;
+        //public ICommand StartGameCommand
+        //{
+        //    get
+        //    {
+        //        if (this.startGameCommand == null)
+        //        {
+        //            this.startGameCommand = new RelayCommand(param => CanStart, param => StartGame());
+        //        }
+        //        return this.startGameCommand;
+        //    }
+        //}
+
+        //ICommand checkBoardCommand;
+        //public ICommand CheckBoardCommand
+        //{
+        //    get
+        //    {
+        //        if (this.checkBoardCommand == null)
+        //        {
+        //            this.checkBoardCommand = new RelayCommand(param => CanCheck, param => CheckBoard());
+        //        }
+        //        return this.checkBoardCommand;
+        //    }
+        //}
+
+        ICommand loadBoardCommand;
+        ICommand LoadBoardCommand
+        {
+            get
+            {
+                if (this.loadBoardCommand == null)
+                {
+                    this.loadBoardCommand = new RelayCommand(param => LoadBoard());
+                }
+                return this.loadBoardCommand;
+            }
+        }
         #endregion
+
 
         #region Private methods
         private void LoadBoard()
         {
-            //De inmpartit in doua metode, una GenerateBoard, alta LoadBoard
-            //Board = new Board(BoardSize);
+            //Squares = BoardConverter.ToBoard()
+        }
+        private void GenerateBoard()
+        {
+            Squares = BoardGenerator.Generate(this.newBoardSize).Squares;
         }
         #endregion
     }

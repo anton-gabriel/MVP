@@ -8,12 +8,16 @@ namespace Sudoku.Commands
         private Predicate<object> canExecute;
         private Action<object> execute;
 
+        public RelayCommand(Action<object> execute)
+        {
+            this.execute = execute;
+        }
         public RelayCommand(Predicate<object> canExecute, Action<object> execute)
         {
             this.canExecute = canExecute;
             this.execute = execute;
         }
-
+     
         event EventHandler ICommand.CanExecuteChanged
         {
             add

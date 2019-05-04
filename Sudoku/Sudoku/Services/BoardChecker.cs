@@ -17,9 +17,9 @@ namespace Sudoku.Services
 
 
         #region Public methods
-        public static bool IsBoardSizeValid(uint size)
+        public static bool IsBoardSizeValid(int size)
         {
-            return Math.Sqrt(size) % 1 == 0;
+            return size <= 0 ? false : Math.Sqrt(size) % 1 == 0;
         }
         public static bool IsBoardSquareValid(Square square)
         {

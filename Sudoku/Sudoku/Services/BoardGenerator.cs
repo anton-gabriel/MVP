@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sudoku.Services
 {
@@ -12,12 +10,7 @@ namespace Sudoku.Services
         #region Public methods
         public static Board Generate(int size)
         {
-            //1. generare matrice de piese
-            // - https://stackoverflow.com/questions/5636438/difference-between-two-lists
-            //2. conversie la tipul Board
-          
-            //return new Board....
-            return new Board();
+            return BoardConverter.ToBoard(BuildBoard(size));
         }
 
         #endregion
@@ -31,6 +24,40 @@ namespace Sudoku.Services
                 Enabled = false
             };
         }
+        private static List<int> GetInterval(int size)
+        {
+            return Enumerable.Range(1, size).ToList();
+        }
+        private static List<int> GetAvailableNumbers(List<int> numbers, List<int> interval)
+        {
+            return interval.Except(numbers).ToList();
+        }
+
+        private static List<List<Piece>> BuildBoard(int size)
+        {
+            List<List<Piece>> pieces = new List<List<Piece>>();
+            Random random = new Random();
+            var interval = GetInterval(size);
+
+            for (int lineIndex = 0; lineIndex < size; ++lineIndex)
+            {
+                List<Piece> line = new List<Piece>();
+                for (int columnIndex = 0; columnIndex < size; ++columnIndex)
+                {
+                    if (random.Next(0, 2) == 0)
+                    {
+                        line.Add(BuildPiece((uint)interval[random.Next(0, interval.Count)]));
+                    }
+                    else
+                    {
+                        line.Add(new Piece { Value = 0, Enabled = true });
+                    }
+                }
+                pieces.Add(line);
+            }
+            return pieces;
+        }
+
         #endregion
     }
 }
