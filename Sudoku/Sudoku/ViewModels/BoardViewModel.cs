@@ -1,6 +1,7 @@
 ﻿using Sudoku.Commands;
 using Sudoku.Models.Board;
 using Sudoku.Services;
+using Sudoku.Services.BoardServices;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -41,7 +42,7 @@ namespace Sudoku.ViewModels
         }
 
 
-        public bool CanGenerate { get; set; } = false;
+        public bool CanGenerate { get; private set; } = false;
         #endregion
 
         #region Commands

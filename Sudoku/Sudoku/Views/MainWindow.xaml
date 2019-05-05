@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:Sudoku"
         xmlns:view = "clr-namespace:Sudoku.Views"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"
-        Title="Sudoku">
+        Title="Sudoku" Height="600" Width="1200">
     <Grid>
-        <view:BoardView Grid.Column="0"></view:BoardView>
+        <view:UserView Grid.Column="0"></view:UserView>
     </Grid>
 </Window>

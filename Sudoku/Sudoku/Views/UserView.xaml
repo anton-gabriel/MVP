@@ -4,28 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sudoku.Views"
+             xmlns:model = "clr-namespace:Sudoku.Models.User"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding UserVM, Source={StaticResource Locator}}">
+
+    <UserControl.Resources>
+        <Style x:Key="menuButton"
+               TargetType="Button">
+            <Setter Property="Padding" Value="20,5"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <Grid Name="Title" Grid.Row="0"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <TextBlock FontSize="30"
+                       Text="Welcome"/>
+        </Grid>
 
         <Grid Name="Users" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
-            <!-- De facut ca Student sa implementeze Serializable (si Stats)
-            iar in clasa UserViewModel, in constructor, sa se apeleze o functie,
-            care incarca studentii din fisier-->
-           
+
+
+            <DataGrid ItemsSource="{ Binding Path = Users, Mode = TwoWay }"
+                      SelectedItem="{ Binding Path = SelectedUser, Mode = OneWayToSource}"
+                      Grid.Column="0"
+                      GridLinesVisibility="None"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      Margin="20">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="First name" Binding="{Binding Path = FirstName, Mode = TwoWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Last name" Binding="{Binding Path = LastName, Mode = TwoWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
-        
+
         <Grid Name="Buttons" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -34,10 +62,22 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="New User" Command ="{ Binding Path = NewUserCommand }"/>
-            <Button Grid.Column="1" Content="Delete User" Command ="{ Binding Path = DeleteUserCommand }"/>
-            <Button Grid.Column="2" Content="Play" Command ="{ Binding Path = PlayCommand }"/>
-            <Button Grid.Column="3" Content="Exit" Command ="{ Binding Path = ExitCommand }"/>
+            <Button Grid.Column="0"
+                    Content="New User"
+                    Command ="{ Binding Path = CreateUserCommand }"
+                    Style="{StaticResource menuButton}"/>
+            <Button Grid.Column="1"
+                    Content="Delete User"
+                    Command ="{ Binding Path = DeleteUserCommand }"
+                    Style="{StaticResource menuButton}"/>
+            <Button Grid.Column="2"
+                    Content="Play"
+                    Command ="{ Binding Path = PlayCommand }"
+                    Style="{StaticResource menuButton}"/>
+            <Button Grid.Column="3"
+                    Content="Exit"
+                    Command ="{ Binding Path = ExitCommand }"
+                    Style="{StaticResource menuButton}"/>
         </Grid>
 
     </Grid>

@@ -56,20 +56,33 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Board\Board.cs" />
+    <Compile Include="Models\User\Image.cs" />
     <Compile Include="Models\User\Statistics.cs" />
-    <Compile Include="Services\BoardChecker.cs" />
-    <Compile Include="Services\BoardConverter.cs" />
-    <Compile Include="Services\BoardGenerator.cs" />
+    <Compile Include="Models\User\UserList.cs" />
+    <Compile Include="Services\BoardServices\BoardChecker.cs" />
+    <Compile Include="Services\BoardServices\BoardConverter.cs" />
+    <Compile Include="Services\BoardServices\BoardGenerator.cs" />
+    <Compile Include="Services\Paths.cs" />
+    <Compile Include="Services\ReaderServices\ImagesReader.cs" />
+    <Compile Include="Services\SerializationServices\Serializer.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateUserView.xaml.cs">
+      <DependentUpon>CreateUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VML\ViewModelLocator.cs" />
     <Page Include="Views\BoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

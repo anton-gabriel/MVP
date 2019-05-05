@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sudoku.Services
+namespace Sudoku.Services.BoardServices
 {
     internal static class BoardGenerator
     {

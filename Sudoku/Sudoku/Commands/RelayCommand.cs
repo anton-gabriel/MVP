@@ -11,14 +11,15 @@ namespace Sudoku.Commands
         public RelayCommand(Action<object> execute)
         {
             this.execute = execute;
+            this.canExecute = param => true;
         }
         public RelayCommand(Predicate<object> canExecute, Action<object> execute)
         {
             this.canExecute = canExecute;
             this.execute = execute;
         }
-     
-        event EventHandler ICommand.CanExecuteChanged
+
+        public event EventHandler CanExecuteChanged
         {
             add
             {
@@ -31,12 +32,12 @@ namespace Sudoku.Commands
             }
         }
 
-        bool ICommand.CanExecute(object parameter)
+        public bool CanExecute(object parameter)
         {
             return this.canExecute(parameter);
         }
 
-        void ICommand.Execute(object parameter)
+        public void Execute(object parameter)
         {
             this.execute(parameter);
         }
