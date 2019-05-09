@@ -7,7 +7,10 @@ namespace Sudoku.Models.User
     internal class User : Utils.NotifyPropertyChanged, ISerializable
     {
         #region Constructors
-        public User() { }
+        public User()
+        {
+            Stats = new Statistics();
+        }
         public User(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
@@ -34,6 +37,7 @@ namespace Sudoku.Models.User
             {
                 this.firstName = value;
                 OnPropertyChanged(propertyName: nameof(FirstName));
+                OnPropertyChanged(propertyName: nameof(FullName));
             }
         }
         public string LastName
@@ -43,8 +47,10 @@ namespace Sudoku.Models.User
             {
                 this.lastName = value;
                 OnPropertyChanged(propertyName: nameof(LastName));
+                OnPropertyChanged(propertyName: nameof(FullName));
             }
         }
+        public string FullName => FirstName + LastName;
         public Image Image { get; set; }
         public Statistics Stats { get; set; }
         #endregion

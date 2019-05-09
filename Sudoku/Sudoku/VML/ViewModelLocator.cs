@@ -27,6 +27,7 @@ namespace Sudoku.VML
         public GameViewModel GameVM => CreateViewModel<GameViewModel>();
         public UserViewModel UserVM => CreateViewModel<UserViewModel>();
         public CreateUserViewModel CreateUserVM => CreateViewModel<CreateUserViewModel>();
+        public UserStatisticsViewModel UserStatisticsVM => CreateViewModel<UserStatisticsViewModel>();
         #endregion
     }
 }

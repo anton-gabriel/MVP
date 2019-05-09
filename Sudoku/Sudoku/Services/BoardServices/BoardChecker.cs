@@ -7,14 +7,12 @@ namespace Sudoku.Services.BoardServices
 {
     internal static class BoardChecker
     {
-
         #region Private methods
         private static int GetSquareIndex(int boardSize, int index)
         {
             return (int)Math.Truncate(decimal.Divide(index, boardSize));
         }
         #endregion
-
 
         #region Public methods
         public static bool IsBoardSizeValid(int size)

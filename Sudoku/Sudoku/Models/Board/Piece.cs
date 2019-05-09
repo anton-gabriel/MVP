@@ -31,7 +31,6 @@ namespace Sudoku.Models.Board
         public uint Value
         {
             get => this.value;
-
             set
             {
                 this.value = value;
@@ -42,7 +41,6 @@ namespace Sudoku.Models.Board
         public bool Enabled
         {
             get => this.enabled;
-
             set
             {
                 this.enabled = value;

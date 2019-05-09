@@ -37,7 +37,7 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public bool CanAddUser => FirstName?.Length != 0 && LastName?.Length != 0;
+        private bool CanAddUser => FirstName?.Length != 0 && LastName?.Length != 0;
         #endregion
 
         #region Commands
@@ -97,7 +97,7 @@ namespace Sudoku.ViewModels
                 LastName = LastName,
                 Image = CurrentImage
             });
-            Serializer.SerializeObject(fileName: Paths.Users, objectToSerialize: UserList);
+            Serializer.SerializeJsonObject(fileName: Paths.Users, objectToSerialize: UserList);
         }
         private void MoveImageToLeft()
         {

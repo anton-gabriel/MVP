@@ -63,20 +63,26 @@
     <Compile Include="Models\User\Image.cs" />
     <Compile Include="Models\User\Statistics.cs" />
     <Compile Include="Models\User\UserList.cs" />
+    <Compile Include="Models\Utils\GameMode.cs" />
     <Compile Include="Services\BoardServices\BoardChecker.cs" />
     <Compile Include="Services\BoardServices\BoardConverter.cs" />
     <Compile Include="Services\BoardServices\BoardGenerator.cs" />
     <Compile Include="Services\Paths.cs" />
+    <Compile Include="Services\ReaderServices\BoardsReader.cs" />
     <Compile Include="Services\ReaderServices\ImagesReader.cs" />
     <Compile Include="Services\SerializationServices\Serializer.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\UserStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserStatisticsView.xaml.cs">
+      <DependentUpon>UserStatisticsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -95,6 +101,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Page Include="Views\UserStatisticsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,7 +139,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

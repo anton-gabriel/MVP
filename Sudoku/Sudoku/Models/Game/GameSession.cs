@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Timers;
 
 namespace Sudoku.Models.Game
 {
-
+    [Serializable]
     internal class GameSession : ISerializable
     {
         #region Constructors
@@ -14,15 +15,11 @@ namespace Sudoku.Models.Game
             {
                 Enabled = false,
                 AutoReset = false,
-                Interval = TimeSpan.FromHours(1).Milliseconds
+                Interval = TimeSpan.FromHours(1).TotalMilliseconds
             };
+            Stopwatch = new Stopwatch();
         }
-        public GameSession(User.User user, Board.Board board) : this()
-        {
-            User = user;
-            Board = board;
-        }
-        public GameSession(SerializationInfo info, StreamingContext context)
+        public GameSession(SerializationInfo info, StreamingContext context) : this()
         {
             if (info == null)
             {
@@ -30,14 +27,17 @@ namespace Sudoku.Models.Game
             }
             User = (User.User)info.GetValue(name: nameof(User), type: typeof(User.User));
             Board = (Board.Board)info.GetValue(name: nameof(Board), type: typeof(Board.Board));
-            Timer = (Timer)info.GetValue(name: nameof(Timer), type: typeof(Timer));
+            Stopwatch = (Stopwatch)info.GetValue(name: nameof(Stopwatch), type: typeof(Stopwatch));
+            Timer.Interval = TimeSpan.FromHours(1).TotalMilliseconds - Stopwatch.ElapsedMilliseconds;
         }
         #endregion
 
         #region Properties
-        public User.User User { get; private set; }
-        public Board.Board Board { get; private set; }
+        public User.User User { get; set; }
+        public Board.Board Board { get; set; }
         public Timer Timer { get; private set; }
+        public Stopwatch Stopwatch { get; private set; }
+        public bool Started => Stopwatch.IsRunning;
         #endregion
 
         #region Public methods
@@ -48,6 +48,12 @@ namespace Sudoku.Models.Game
         public void Start()
         {
             Timer.Start();
+            Stopwatch.Start();
+        }
+        public void Stop()
+        {
+            Timer.Stop();
+            Stopwatch.Stop();
         }
         #endregion
 
@@ -56,7 +62,7 @@ namespace Sudoku.Models.Game
         {
             info.AddValue(name: nameof(User), value: User);
             info.AddValue(name: nameof(Board), value: Board);
-            info.AddValue(name: nameof(Timer), value: Timer);
+            info.AddValue(name: nameof(Stopwatch), value: Stopwatch);
         }
         #endregion
     }

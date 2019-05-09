@@ -36,10 +36,10 @@ namespace Sudoku.ViewModels
 
         public User SelectedUser
         {
-            get => selectedUser;
+            get => this.selectedUser;
             set
             {
-                selectedUser = value;
+                this.selectedUser = value;
                 OnPropertyChanged(propertyName: nameof(SelectedUser));
             }
         }
@@ -104,7 +104,7 @@ namespace Sudoku.ViewModels
         {
             try
             {
-                this.userList = Serializer.DeserializeObject(Paths.Users) as UserList;
+                this.userList = Serializer.DeserializeJsonObject<UserList>(Paths.Users);
             }
             catch (System.Exception)
             {
@@ -121,11 +121,12 @@ namespace Sudoku.ViewModels
         private void DeleteUser()
         {
             Users.Remove(SelectedUser);
-            Serializer.SerializeObject(fileName: Paths.Users, objectToSerialize: this.userList);
+            Serializer.SerializeJsonObject(fileName: Paths.Users, objectToSerialize: this.userList);
         }
         private void Play()
         {
             GameView gameView = new GameView();
+            (gameView.DataContext as GameViewModel).User = SelectedUser;
             gameView.Show();
         }
         private void CloseWindow(Window window)

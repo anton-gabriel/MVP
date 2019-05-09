@@ -48,8 +48,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
 
@@ -58,9 +58,12 @@
                 <MenuItem Header="File">
                     <MenuItem Header="New Game"
                               Command="{Binding StartNewGameCommand}"/>
-                    <MenuItem Header="Open Game" Command="{}"/>
-                    <MenuItem Header="Save Game"/>
-                    <MenuItem Header="Statistics"/>
+                    <MenuItem Header="Open Game"
+                              Command="{Binding OpenGameCommand}"/>
+                    <MenuItem Header="Save Game"
+                              Command="{Binding SaveGameCommand}"/>
+                    <MenuItem Header="Statistics"
+                              Command="{Binding OpenStatisticsCommand}"/>
                     <Separator/>
                     <MenuItem Header="Exit"
                               Command="{Binding ExitCommand}"
@@ -68,7 +71,10 @@
                 </MenuItem>
 
                 <MenuItem Header="Options">
-                    <MenuItem Header="Standard"/>
+                    <MenuItem Header="Standard"
+                              Command="{Binding StandardGameCommand}"/>
+                    <MenuItem Header="Custom"
+                              Command="{Binding CustomGameCommand}"/>
                 </MenuItem>
 
                 <MenuItem Header="About">
@@ -83,7 +89,13 @@
             </Menu>
         </Grid>
 
-        <Grid Name="Game" Grid.Row="1"
+        <Grid Name="Timer" Grid.Row="1"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <TextBlock Text="{Binding DisplayTime}"/>
+        </Grid>
+
+        <Grid Name="Game" Grid.Row="2"
               HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -92,7 +104,7 @@
 
             <Grid Name="Board" Grid.Column="0"
                   Margin="10px">
-                <ItemsControl ItemsSource="{Binding Path = Squares}" 
+                <ItemsControl ItemsSource="{Binding Path = Board.Squares}" 
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               BorderBrush="Black"
@@ -123,7 +135,7 @@
                             Style="{StaticResource defaulButton}"/>
                     <Button Content="Check"
                             Style="{StaticResource defaulButton}"/>
-                    <TextBox Text="{Binding BoardSize, Mode=TwoWay}"
+                    <TextBox Text="{Binding BoardGeneratorSize, Mode=TwoWay}"
                              Style="{StaticResource defaultTextBox}"
                              MaxLength="2"/>
                     <Border BorderBrush="AliceBlue"
