@@ -1,13 +1,15 @@
-﻿<Window x:Class="Sudoku.Views.BoardVieww"
+﻿<Window x:Class="Sudoku.Views.GameView"
+        x:Name="GameWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sudoku.Views"
-        xmlns:model = "clr-namespace:Sudoku.Models.Board"
-        
+        xmlns:model="clr-namespace:Sudoku.Models.Board"
         mc:Ignorable="d"
-        Title="BoardVieww" Height="450" Width="800">
+        Title="GameView" Height="450" Width="800"
+        DataContext="{Binding GameVM, Source={StaticResource Locator}}">
+
     <Window.Resources>
         <DataTemplate DataType = "{x:Type model:Piece}">
             <TextBox Text="{Binding Path = Value, Mode = TwoWay}"
@@ -43,25 +45,26 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid HorizontalAlignment="Center"
-          VerticalAlignment="Center">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
 
-        <Grid Name="Menu"
-              Grid.Row="0">
+        <Grid Name="Menu" Grid.Row="0">
             <Menu>
                 <MenuItem Header="File">
-                    <MenuItem Header="New Game" Command="{Binding StartNewGameCommand}"/>
+                    <MenuItem Header="New Game"
+                              Command="{Binding StartNewGameCommand}"/>
                     <MenuItem Header="Open Game" Command="{}"/>
                     <MenuItem Header="Save Game"/>
                     <MenuItem Header="Statistics"/>
                     <Separator/>
-                    <MenuItem Header="Exit"/>
+                    <MenuItem Header="Exit"
+                              Command="{Binding ExitCommand}"
+                              CommandParameter="{Binding ElementName = GameWindow}"/>
                 </MenuItem>
 
                 <MenuItem Header="Options">
@@ -80,7 +83,8 @@
             </Menu>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Name="Game" Grid.Row="1"
+              HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>

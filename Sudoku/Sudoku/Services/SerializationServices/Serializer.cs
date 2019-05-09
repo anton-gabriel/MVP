@@ -18,13 +18,13 @@ namespace Sudoku.Services.SerializationServices
 
         public static ISerializable DeserializeObject(string fileName)
         {
-            ISerializable objectToSerialize;
+            ISerializable objectToDeserialize;
             using (Stream stream = File.Open(fileName, FileMode.Open))
             {
                 BinaryFormatter bFormatter = new BinaryFormatter();
-                objectToSerialize = (ISerializable)bFormatter.Deserialize(stream);
+                objectToDeserialize = (ISerializable)bFormatter.Deserialize(stream);
             }
-            return objectToSerialize;
+            return objectToDeserialize;
         }
         #endregion
     }

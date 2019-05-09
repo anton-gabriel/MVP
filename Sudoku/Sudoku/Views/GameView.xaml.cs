@@ -3,11 +3,11 @@
 namespace Sudoku.Views
 {
     /// <summary>
-    /// Interaction logic for BoardVieww.xaml
+    /// Interaction logic for GameView.xaml
     /// </summary>
-    public partial class BoardVieww : Window
+    public partial class GameView : Window
     {
-        public BoardVieww()
+        public GameView()
         {
             InitializeComponent();
         }

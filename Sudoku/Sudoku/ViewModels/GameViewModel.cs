@@ -1,16 +1,16 @@
 ﻿using Sudoku.Commands;
 using Sudoku.Models.Board;
-using Sudoku.Services;
 using Sudoku.Services.BoardServices;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Sudoku.ViewModels
 {
-    internal class BoardViewModel : Models.Utils.NotifyPropertyChanged
+    internal class GameViewModel : Models.Utils.NotifyPropertyChanged
     {
         #region Constructors
-        public BoardViewModel()
+        public GameViewModel()
         {
             this.board = new Board();
         }
@@ -97,6 +97,18 @@ namespace Sudoku.ViewModels
                 return this.loadBoardCommand;
             }
         }
+        private ICommand exitCommand;
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (this.exitCommand == null)
+                {
+                    this.exitCommand = new RelayCommand<Window>(CloseWindow);
+                }
+                return this.exitCommand;
+            }
+        }
         #endregion
 
 
@@ -108,6 +120,13 @@ namespace Sudoku.ViewModels
         private void GenerateBoard()
         {
             Squares = BoardGenerator.Generate(this.newBoardSize).Squares;
+        }
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
+            }
         }
         #endregion
     }

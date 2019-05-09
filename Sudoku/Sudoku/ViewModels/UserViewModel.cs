@@ -4,6 +4,7 @@ using Sudoku.Services;
 using Sudoku.Services.SerializationServices;
 using Sudoku.Views;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Sudoku.ViewModels
@@ -17,7 +18,8 @@ namespace Sudoku.ViewModels
         }
         #endregion
         #region Private fields
-        UserList userList;
+        private UserList userList;
+        private User selectedUser;
         #endregion
 
         #region Properties
@@ -31,7 +33,16 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public User SelectedUser { get; set; }
+
+        public User SelectedUser
+        {
+            get => selectedUser;
+            set
+            {
+                selectedUser = value;
+                OnPropertyChanged(propertyName: nameof(SelectedUser));
+            }
+        }
 
         public bool CanDeleteUser => SelectedUser != null;
         public bool CanPlay => SelectedUser != null;
@@ -81,7 +92,7 @@ namespace Sudoku.ViewModels
             {
                 if (this.exitCommand == null)
                 {
-                    this.exitCommand = new RelayCommand(param => Exit());
+                    this.exitCommand = new RelayCommand<Window>(CloseWindow);
                 }
                 return this.exitCommand;
             }
@@ -114,14 +125,16 @@ namespace Sudoku.ViewModels
         }
         private void Play()
         {
-            //open new user control
-            //close this
+            GameView gameView = new GameView();
+            gameView.Show();
         }
-        private void Exit()
+        private void CloseWindow(Window window)
         {
-            System.Windows.Application.Current.Shutdown();
+            if (window != null)
+            {
+                window.Close();
+            }
         }
         #endregion
-
     }
 }
