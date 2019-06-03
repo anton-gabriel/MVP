@@ -11,6 +11,8 @@ using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
+using TotalCommander.Services;
 
 namespace Sudoku.ViewModels
 {
@@ -21,11 +23,14 @@ namespace Sudoku.ViewModels
         {
             GameSession = new GameSession();
             GameSession.AddHandler(GameTimerElapsed);
+            InitilaizeTimer();
         }
         #endregion
 
         #region Private fields
         private GameSession gameSession;
+        private DispatcherTimer timer;
+        private string displayTime;
         #endregion
 
         #region Properties
@@ -70,10 +75,11 @@ namespace Sudoku.ViewModels
 
         public string DisplayTime
         {
-            get
+            get => this.displayTime;
+            set
             {
-                double interval = TimeSpan.FromHours(1).TotalMilliseconds - GameSession.Stopwatch.ElapsedMilliseconds;
-                return TimeSpan.FromMilliseconds(interval).TotalMinutes.ToString() + ":" + TimeSpan.FromMilliseconds(interval).TotalSeconds.ToString();
+                this.displayTime = value;
+                OnPropertyChanged(propertyName: nameof(DisplayTime));
             }
         }
 
@@ -81,12 +87,12 @@ namespace Sudoku.ViewModels
         private bool CanStartNewGameSession => User != null;
         private bool CanSaveGameSession => (Board != null) && (User != null);
         private bool CanOpenStatistics => User != null;
+        private bool CanStartGame => Board != null && !GameSession.Started;
         private bool CanGenerateBoard => (User != null) && (GameMode == GameMode.Custom) && BoardChecker.IsBoardSizeValid(size: BoardGeneratorSize);
         public int BoardGeneratorSize { get; set; }
         public GameMode GameMode { get; private set; }
 
         #endregion
-
 
         #region Commands
         ICommand generateBoardCommand;
@@ -102,6 +108,21 @@ namespace Sudoku.ViewModels
             }
         }
 
+        ICommand startGameCommand;
+        public ICommand StartGameCommand
+        {
+            get
+            {
+                if (this.startGameCommand == null)
+                {
+                    this.startGameCommand = new RelayCommand(param => CanStartGame, param => StartGame());
+                }
+                return this.startGameCommand;
+            }
+        }
+
+
+
         ICommand checkBoardCommand;
         public ICommand CheckBoardCommand
         {
@@ -114,7 +135,6 @@ namespace Sudoku.ViewModels
                 return this.checkBoardCommand;
             }
         }
-
 
         ICommand startNewGameCommand;
         public ICommand StartNewGameCommand
@@ -210,6 +230,25 @@ namespace Sudoku.ViewModels
 
         #region Private methods
 
+        private void StartGame()
+        {
+            GameSession.Start();
+        }
+
+        private void CheckBoard()
+        {
+            if (BoardChecker.CheckBoard(Board))
+            {
+                ++User.Stats.WonGames;
+                GameSession.Stop();
+                UserDialog.MessageDialog("You won!", type: DialogType.Info);
+            }
+            else
+            {
+                UserDialog.MessageDialog("Try again.", type: DialogType.Info);
+            }
+        }
+
         private void GenerateBoard()
         {
             ++User.Stats.TotalGames;
@@ -226,12 +265,10 @@ namespace Sudoku.ViewModels
                     EndTheGame();
                 }
                 Board = BoardsReader.ReadRandomBoard(Paths.StandardBoards);
-                GameSession.Start();
             }
             catch (System.Exception)
             {
-                //no board exists
-                throw;
+                UserDialog.MessageDialog("No available boards.");
             }
         }
         private void LoadGameSession()
@@ -243,11 +280,10 @@ namespace Sudoku.ViewModels
                     EndTheGame();
                 }
                 GameSession = Serializer.DeserializeJsonObject<GameSession>(Paths.GameSessions + User.FullName);
-                GameSession.Start();
             }
             catch (System.Exception)
             {
-                //No session exists sau already start?
+                UserDialog.MessageDialog("No session available.");
                 throw;
             }
         }
@@ -259,8 +295,7 @@ namespace Sudoku.ViewModels
             }
             catch (System.Exception)
             {
-
-                throw;
+                UserDialog.MessageDialog("Save failed.", type: DialogType.Alert);
             }
         }
         private void OpenStatistics()
@@ -272,28 +307,34 @@ namespace Sudoku.ViewModels
 
         private void CloseWindow(Window window)
         {
-            if (GameSession.Started)
+            if (UserDialog.GetResponseDialog("Are you sure?", type: DialogType.Alert))
             {
-                EndTheGame();
-            }
+                if (GameSession.Started)
+                {
+                    EndTheGame();
+                }
 
-            if (window != null)
-            {
-                window.Close();
+                if (window != null)
+                {
+                    window.Close();
+                }
             }
         }
-        private void CheckBoard()
-        {
-            if (BoardChecker.CheckBoard(Board))
-            {
-                ++User.Stats.WonGames;
-                GameSession.Stop();
-            }
-        }
+
         private void EndTheGame()
         {
             ++User.Stats.TotalGames;
             GameSession.Stop();
+        }
+
+        private void InitilaizeTimer()
+        {
+            this.timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1),
+            };
+            this.timer.Tick += TimeChanged;
+            this.timer.Start();
         }
         #endregion
 
@@ -306,6 +347,11 @@ namespace Sudoku.ViewModels
             {
                 ++User.Stats.WonGames;
             }
+        }
+        private void TimeChanged(object sender, EventArgs e)
+        {
+            TimeSpan interval = TimeSpan.FromHours(1) - GameSession.Stopwatch.Elapsed;
+            DisplayTime = interval.ToString(@"mm\:ss"); ;
         }
         #endregion
     }

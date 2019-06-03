@@ -132,9 +132,11 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <Button Content="Start"
-                            Style="{StaticResource defaulButton}"/>
+                            Style="{StaticResource defaulButton}"
+                            Command="{Binding StartGameCommand}"/>
                     <Button Content="Check"
-                            Style="{StaticResource defaulButton}"/>
+                            Style="{StaticResource defaulButton}"
+                            Command="{Binding CheckBoardCommand}"/>
                     <TextBox Text="{Binding BoardGeneratorSize, Mode=TwoWay}"
                              Style="{StaticResource defaultTextBox}"
                              MaxLength="2"/>

@@ -11,13 +11,7 @@ namespace Sudoku.Models.Game
         #region Constructors
         public GameSession()
         {
-            Timer = new Timer
-            {
-                Enabled = false,
-                AutoReset = false,
-                Interval = TimeSpan.FromHours(1).TotalMilliseconds
-            };
-            Stopwatch = new Stopwatch();
+            InitializeTimers();
         }
         public GameSession(SerializationInfo info, StreamingContext context) : this()
         {
@@ -54,6 +48,20 @@ namespace Sudoku.Models.Game
         {
             Timer.Stop();
             Stopwatch.Stop();
+            InitializeTimers();
+        }
+        #endregion
+
+        #region Private methods
+        private void InitializeTimers()
+        {
+            Timer = new Timer
+            {
+                Enabled = false,
+                AutoReset = false,
+                Interval = TimeSpan.FromHours(1).TotalMilliseconds
+            };
+            Stopwatch = new Stopwatch();
         }
         #endregion
 

@@ -30,7 +30,7 @@ namespace Sudoku.Services.BoardServices
             List<Piece> pieces = new List<Piece>();
             for (int index = 0; index < board.Size; ++index)
             {
-                pieces.AddRange(board.Squares[lineIndex][index].GetLine(line: lineIndex % board.Size));
+                pieces.AddRange(board.Squares[squareIndex][index].GetLine(line: lineIndex % board.Size));
             }
             return pieces.Count != pieces.Distinct().Count();
         }
@@ -40,7 +40,7 @@ namespace Sudoku.Services.BoardServices
             List<Piece> pieces = new List<Piece>();
             for (int index = 0; index < board.Size; ++index)
             {
-                pieces.AddRange(board.Squares[index][columnIndex].GetColumn(column: columnIndex % board.Size));
+                pieces.AddRange(board.Squares[index][squareIndex].GetColumn(column: columnIndex % board.Size));
             }
             return pieces.Count != pieces.Distinct().Count();
         }
