@@ -65,11 +65,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommands.cs" />
-    <Compile Include="Migrations\201906041337377_CreatedUser.cs" />
-    <Compile Include="Migrations\201906041337377_CreatedUser.Designer.cs">
-      <DependentUpon>201906041337377_CreatedUser.cs</DependentUpon>
+    <Compile Include="Migrations\201906041707027_CreatedUser.cs" />
+    <Compile Include="Migrations\201906041707027_CreatedUser.Designer.cs">
+      <DependentUpon>201906041707027_CreatedUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataAccess\UserDAL.cs" />
     <Compile Include="Models\Entity\User.cs" />
     <Compile Include="Services\HotelContext.cs" />
     <Compile Include="Services\Repository\IRepository.cs" />
@@ -81,19 +82,35 @@
     <Compile Include="Utils\NotifyPropertyChanged.cs" />
     <Compile Include="Utils\Paths.cs" />
     <Compile Include="Utils\UserDialog.cs" />
+    <Compile Include="Utils\Validators.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VML\ViewModelLocator.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -109,8 +126,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201906041337377_CreatedUser.resx">
-      <DependentUpon>201906041337377_CreatedUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906041707027_CreatedUser.resx">
+      <DependentUpon>201906041707027_CreatedUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,11 +142,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\BusinessLogic\" />
-    <Folder Include="Models\DataAccess\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

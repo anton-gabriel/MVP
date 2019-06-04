@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Sudoku.Commands
+namespace Hotel.Commands
 {
     internal sealed class RelayCommand : ICommand
     {

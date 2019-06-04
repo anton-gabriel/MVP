@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotel.ViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace Hotel.VML
@@ -23,7 +24,8 @@ namespace Hotel.VML
         #endregion
 
         #region ViewModels
-
+        public LoginViewModel LoginVM => CreateViewModel<LoginViewModel>();
+        public RegisterViewModel RegisterVM => CreateViewModel<RegisterViewModel>();
         #endregion
     }
 }
