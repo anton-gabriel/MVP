@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Hotel.Models.Entity;
+using Hotel.Services;
+using Hotel.Services.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,20 @@ namespace Hotel
         public MainWindow()
         {
             InitializeComponent();
+            using (var unitOfWork = new UnitOfWork(new HotelContext()))
+            {
+                // Example1
+                unitOfWork.Users.Add(new User()
+                {
+                    UserType = UserType.Client,
+                    FirstName = "Test",
+                    LastName = "test",
+                    Password = "12345",
+                });
+
+
+                unitOfWork.Complete();
+            }
         }
     }
 }

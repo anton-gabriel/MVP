@@ -5,7 +5,7 @@ namespace Hotel.Services.UnitOfWork
 {
     internal interface IUnitOfWork : IDisposable
     {
-        IUserRepository UserRepository { get; }
+        IUserRepository Users { get; }
         int Complete();
     }
 }

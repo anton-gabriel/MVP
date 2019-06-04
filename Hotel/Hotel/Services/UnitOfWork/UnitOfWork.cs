@@ -8,7 +8,7 @@ namespace Hotel.Services.UnitOfWork
         public UnitOfWork(HotelContext context)
         {
             this.context = context ?? throw new System.ArgumentNullException(nameof(context));
-            UserRepository = new UserRepository(context);
+            Users = new UserRepository(context);
         }
         #endregion
 
@@ -17,7 +17,7 @@ namespace Hotel.Services.UnitOfWork
         #endregion
 
         #region Properties
-        public IUserRepository UserRepository { get; private set; }
+        public IUserRepository Users { get; private set; }
 
         #endregion
 
