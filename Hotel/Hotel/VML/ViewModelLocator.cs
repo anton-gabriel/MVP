@@ -26,6 +26,7 @@ namespace Hotel.VML
         #region ViewModels
         public LoginViewModel LoginVM => CreateViewModel<LoginViewModel>();
         public RegisterViewModel RegisterVM => CreateViewModel<RegisterViewModel>();
+        public MainViewModel MainVM => CreateViewModel<MainViewModel>();
         #endregion
     }
 }

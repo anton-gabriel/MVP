@@ -1,4 +1,5 @@
 ﻿using Hotel.Utils;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hotel.Models.Entity
@@ -51,6 +52,10 @@ namespace Hotel.Models.Entity
                 OnPropertyChanged(propertyName: nameof(FullName));
             }
         }
+
+        [Index(IsUnique = true)]
+        [Required]
+        [StringLength(200)]
         public string Email
         {
             get => this.email;
@@ -60,6 +65,9 @@ namespace Hotel.Models.Entity
                 OnPropertyChanged(propertyName: nameof(Email));
             }
         }
+
+        [Required]
+        [StringLength(200)]
         public string Password
         {
             get => this.password;

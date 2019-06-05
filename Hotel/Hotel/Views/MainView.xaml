@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Views"
         mc:Ignorable="d"
-        Title="Welcome" Width="400"
-        SizeToContent="Height">
-    
+        Name="MainWindow"
+        Title="Welcome"
+        Width="400"
+        SizeToContent="Height"
+        DataContext="{Binding MainVM, Source={StaticResource Locator}}">
+
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -40,6 +43,8 @@
         <Grid Grid.Row="2" Grid.Column="0">
             <Button Content="Continue without Login"
                     Style="{StaticResource NoBorderButtonStyle}"
+                    Command="{Binding ContinueCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=MainWindow}"
                     Margin="10"/>
         </Grid>
     </Grid>

@@ -69,6 +69,14 @@
     <Compile Include="Migrations\201906041707027_CreatedUser.Designer.cs">
       <DependentUpon>201906041707027_CreatedUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906050526508_ChangedUserEmail.cs" />
+    <Compile Include="Migrations\201906050526508_ChangedUserEmail.Designer.cs">
+      <DependentUpon>201906050526508_ChangedUserEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906050537211_ChangedUserEmail1.cs" />
+    <Compile Include="Migrations\201906050537211_ChangedUserEmail1.Designer.cs">
+      <DependentUpon>201906050537211_ChangedUserEmail1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataAccess\UserDAL.cs" />
     <Compile Include="Models\Entity\User.cs" />
@@ -85,6 +93,7 @@
     <Compile Include="Utils\UserDialog.cs" />
     <Compile Include="Utils\Validators.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -129,6 +138,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201906041707027_CreatedUser.resx">
       <DependentUpon>201906041707027_CreatedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906050526508_ChangedUserEmail.resx">
+      <DependentUpon>201906050526508_ChangedUserEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906050537211_ChangedUserEmail1.resx">
+      <DependentUpon>201906050537211_ChangedUserEmail1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

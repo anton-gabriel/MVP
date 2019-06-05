@@ -2,6 +2,7 @@
 using Hotel.Models.DataAccess;
 using Hotel.Models.Entity;
 using Hotel.Utils;
+using System.Windows;
 
 namespace Hotel.ViewModels
 {
@@ -39,7 +40,21 @@ namespace Hotel.ViewModels
                 User loggedUser = userDAL.Login(User);
                 if (loggedUser != null)
                 {
-                    //open new window in function of user type, and give the user forward
+                    MessageBox.Show($"Login succeded: {loggedUser.UserType} , {loggedUser.FullName}");
+                    switch (loggedUser.UserType)
+                    {
+                        case UserType.Client:
+
+                            break;
+                        case UserType.Employee:
+
+                            break;
+                        case UserType.Admin:
+
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 else
                 {
