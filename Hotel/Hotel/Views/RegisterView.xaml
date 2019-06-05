@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hotel.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
+             d:DesignHeight="450" d:DesignWidth="400"
+             DataContext="{Binding RegisterVM, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -26,7 +27,8 @@
             <TextBlock Grid.Row="0"
                            Text="First name"/>
             <TextBox Grid.Row="1"
-                     MaxLength="30"/>
+                     MaxLength="30"
+                     Text="{Binding User.FirstName, Mode=OneWayToSource}"/>
         </Grid>
 
         <Grid Name="LastName" Grid.Row="1"
@@ -39,10 +41,11 @@
             <TextBlock Grid.Row="0"
                            Text="Last name"/>
             <TextBox Grid.Row="1"
-                     MaxLength="30"/>
+                     MaxLength="30"
+                     Text="{Binding User.LastName, Mode=OneWayToSource}" />
         </Grid>
 
-        <Grid Name="Username" Grid.Row="2"
+        <Grid Name="Email" Grid.Row="2"
               Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -52,7 +55,8 @@
             <TextBlock Grid.Row="0"
                            Text="Email"/>
             <TextBox Grid.Row="1"
-                     MaxLength="30"/>
+                     MaxLength="30"
+                     Text="{Binding User.Email, Mode=OneWayToSource}"/>
         </Grid>
 
         <Grid Name="Password" Grid.Row="3"
@@ -65,7 +69,8 @@
             <TextBlock Grid.Row="0"
                            Text="Password"/>
             <TextBox Grid.Row="1"
-                     MaxLength="30"/>
+                     MaxLength="30"
+                     Text="{Binding User.Password, Mode=OneWayToSource}"/>
         </Grid>
 
         <Grid Name="RegisterButton" Grid.Row="4"
@@ -75,7 +80,8 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="Register" Grid.Column="0"
-                    Style="{StaticResource BaseButtonStyle}"></Button>
+                    Style="{StaticResource BaseButtonStyle}"
+                    Command="{Binding RegisterCommand, Mode=OneWay}"/>
         </Grid>
 
     </Grid>

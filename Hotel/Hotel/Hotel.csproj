@@ -79,6 +79,7 @@
     <Compile Include="Services\Repository\UserRepository.cs" />
     <Compile Include="Services\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Services\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\NotifyPropertyChanged.cs" />
     <Compile Include="Utils\Paths.cs" />
     <Compile Include="Utils\UserDialog.cs" />

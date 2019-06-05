@@ -15,7 +15,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Name="Username" Grid.Row="0"
+        <Grid Name="Email" Grid.Row="0"
               Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -51,7 +51,7 @@
 
             <Button Content="Login" Grid.Column="0"
                     Style="{StaticResource BaseButtonStyle}"
-                    Command="{Binding LoginCommand}"></Button>
+                    Command="{Binding LoginCommand}"/>
         </Grid>
 
     </Grid>

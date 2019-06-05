@@ -29,7 +29,7 @@ namespace Hotel.ViewModels
         #region Private methods
         private bool CanLogin()
         {
-            return (User.Email.Length != 0) && (User.Password.Length != 0);
+            return User.HasDataForLogin();
         }
         private void Login()
         {

@@ -16,7 +16,7 @@ namespace Hotel.Utils
             {
                 UserDialog.MessageDialog(message: "Invalid email adress!", type: DialogType.Alert);
             }
-            catch(System.Exception)
+            catch (System.Exception)
             {
 
             }
@@ -29,8 +29,12 @@ namespace Hotel.Utils
             //match further only if there is an upper-lower case letter
             //match further only if theres anything except letter or digit
             //match 8 or more characters
+            if (Regex.IsMatch(password, @"^(?=(.*\d){2})(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d]).{8,}$"))
+            {
+                return true;
+            }
             UserDialog.MessageDialog(message: "Password must contains more than 8 characters upper and lower, more than 2 digits, and symbols.", type: DialogType.Alert);
-            return Regex.IsMatch(password, @"^(?=(.*\d){2})(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z\d]).{8,}$");
+            return false;
         }
     }
 }
