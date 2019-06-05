@@ -5,10 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Views"
         mc:Ignorable="d"
-        Title="UserView" Height="450" Width="800"
+        Title="Rooms and offers" Height="450" Width="800"
         DataContext="{Binding UserVM, Source={StaticResource Locator}}">
-        
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+            </Grid>
+            
+            <DatePicker Grid.Column="0"
+                        SelectedDate =""></DatePicker>
+            <DatePicker Grid.Column="1"
+                        SelectedDate =""></DatePicker>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+            </Grid>
+
+            <DatePicker Grid.Column="0"
+                        SelectedDate =""></DatePicker>
+            <DatePicker Grid.Column="1"
+                        SelectedDate =""></DatePicker>
+        </Grid>
+
+
+        <Grid Name="Search" Grid.Row="1" Grid.Column="1"
+                  Margin="10px">
+
+            <ItemsControl ItemsSource="{Binding Rooms}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding Room.RoomType}"
+                                       Style="{StaticResource PaddingTextBlockStyle}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Room.Price}"
+                                       Style="{StaticResource PaddingTextBlockStyle}"/>
+                            <Button Grid.Row="0" Grid.Column="2"
+                                    Height="auto"
+                                    Style="{StaticResource BaseButtonStyle}"
+                                    Content="Details"
+                                    Command="{Binding DataContext.ViewRoomCommand, ElementName=Search, Mode=OneWay}"
+                                    CommandParameter="{Binding}" />
+                            <!--<ItemsControl ItemsSource="{Binding Images}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                                <Image Source="{Binding Image}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>-->
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+
+
     </Grid>
 </Window>

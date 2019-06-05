@@ -20,7 +20,7 @@ namespace Hotel.Models.DataAccess
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                unitOfWork.Users.Remove(user);
+                user.Deleted = true;
                 unitOfWork.Complete();
             }
         }

@@ -82,6 +82,7 @@
       <DependentUpon>201906051110491_CreatedDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataAccess\RoomDAL.cs" />
     <Compile Include="Models\DataAccess\UserDAL.cs" />
     <Compile Include="Models\Entity\BookingOffer.cs" />
     <Compile Include="Models\Entity\BookingRoom.cs" />
@@ -93,10 +94,30 @@
     <Compile Include="Models\Entity\RoomImage.cs" />
     <Compile Include="Models\Entity\Service.cs" />
     <Compile Include="Models\Entity\User.cs" />
+    <Compile Include="Models\Extended\BookingRoomData.cs" />
+    <Compile Include="Models\Extended\RoomData.cs" />
     <Compile Include="Services\HotelContext.cs" />
+    <Compile Include="Services\Repository\BookingOfferRepository.cs" />
+    <Compile Include="Services\Repository\BookingRoomRepository.cs" />
+    <Compile Include="Services\Repository\BookingRoomServiceRepository.cs" />
+    <Compile Include="Services\Repository\FeatureRepository.cs" />
+    <Compile Include="Services\Repository\IBookingOfferRepository.cs" />
+    <Compile Include="Services\Repository\IBookingRoomRepository.cs" />
+    <Compile Include="Services\Repository\IBookingRoomServiceRepository.cs" />
+    <Compile Include="Services\Repository\IFeatureRepository.cs" />
+    <Compile Include="Services\Repository\IOfferRepository.cs" />
     <Compile Include="Services\Repository\IRepository.cs" />
+    <Compile Include="Services\Repository\IRoomFeatureRepository.cs" />
+    <Compile Include="Services\Repository\IRoomImageRepository.cs" />
+    <Compile Include="Services\Repository\IRoomRepository.cs" />
+    <Compile Include="Services\Repository\IServiceRepository.cs" />
     <Compile Include="Services\Repository\IUserRepository.cs" />
+    <Compile Include="Services\Repository\OfferRepository.cs" />
     <Compile Include="Services\Repository\Repository.cs" />
+    <Compile Include="Services\Repository\RoomFeatureRepository.cs" />
+    <Compile Include="Services\Repository\RoomImageRepository.cs" />
+    <Compile Include="Services\Repository\RoomRepository.cs" />
+    <Compile Include="Services\Repository\ServiceRepository.cs" />
     <Compile Include="Services\Repository\UserRepository.cs" />
     <Compile Include="Services\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Services\UnitOfWork\UnitOfWork.cs" />

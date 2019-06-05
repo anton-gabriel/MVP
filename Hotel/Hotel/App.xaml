@@ -16,7 +16,10 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            
+        </Style>
+        <Style x:Key="PaddingTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
     </Application.Resources>
 </Application>

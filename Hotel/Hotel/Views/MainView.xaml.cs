@@ -1,16 +1,7 @@
-﻿using System;
+﻿using Hotel.Models.DataAccess;
+using Hotel.Models.Entity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hotel.Views
 {
@@ -22,6 +13,20 @@ namespace Hotel.Views
         public MainView()
         {
             InitializeComponent();
+            RoomDAL roomDAL = new RoomDAL();
+            var result = roomDAL.GetRoomData(1);
+
+            System.Console.WriteLine($"Room type: {result.Room.RoomType}");
+            foreach (var item in result.Features)
+            {
+                System.Console.WriteLine($"Feature: {item.Name}");
+            }
+            foreach (var item in result.Images)
+            {
+                System.Console.WriteLine($"Feature: {item.Image.Length}");
+            }
+
+
         }
     }
 }

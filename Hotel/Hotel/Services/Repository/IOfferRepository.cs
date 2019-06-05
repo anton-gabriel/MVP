@@ -2,8 +2,7 @@
 
 namespace Hotel.Services.Repository
 {
-    internal interface IUserRepository : IRepository<User>
+    internal interface IOfferRepository : IRepository<Offer>
     {
-
     }
 }
