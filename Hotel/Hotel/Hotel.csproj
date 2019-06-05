@@ -77,8 +77,21 @@
     <Compile Include="Migrations\201906050537211_ChangedUserEmail1.Designer.cs">
       <DependentUpon>201906050537211_ChangedUserEmail1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906051110491_CreatedDatabase.cs" />
+    <Compile Include="Migrations\201906051110491_CreatedDatabase.Designer.cs">
+      <DependentUpon>201906051110491_CreatedDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataAccess\UserDAL.cs" />
+    <Compile Include="Models\Entity\BookingOffer.cs" />
+    <Compile Include="Models\Entity\BookingRoom.cs" />
+    <Compile Include="Models\Entity\BookingRoomService.cs" />
+    <Compile Include="Models\Entity\Feature.cs" />
+    <Compile Include="Models\Entity\Offer.cs" />
+    <Compile Include="Models\Entity\Room.cs" />
+    <Compile Include="Models\Entity\RoomFeature.cs" />
+    <Compile Include="Models\Entity\RoomImage.cs" />
+    <Compile Include="Models\Entity\Service.cs" />
     <Compile Include="Models\Entity\User.cs" />
     <Compile Include="Services\HotelContext.cs" />
     <Compile Include="Services\Repository\IRepository.cs" />
@@ -92,9 +105,22 @@
     <Compile Include="Utils\Paths.cs" />
     <Compile Include="Utils\UserDialog.cs" />
     <Compile Include="Utils\Validators.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\AdminView.xaml.cs">
+      <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientView.xaml.cs">
+      <DependentUpon>ClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -104,11 +130,26 @@
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VML\ViewModelLocator.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906050537211_ChangedUserEmail1.resx">
       <DependentUpon>201906050537211_ChangedUserEmail1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051110491_CreatedDatabase.resx">
+      <DependentUpon>201906051110491_CreatedDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

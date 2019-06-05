@@ -19,6 +19,7 @@ namespace Hotel.Models.Entity
         private string email;
         private string password;
         private UserType userType;
+        private bool deleted;
         #endregion
 
         #region Properties
@@ -75,6 +76,16 @@ namespace Hotel.Models.Entity
             {
                 this.password = value;
                 OnPropertyChanged(propertyName: nameof(Password));
+            }
+        }
+
+        public bool Deleted
+        {
+            get => this.deleted;
+            set
+            {
+                this.deleted = value;
+                OnPropertyChanged(propertyName: nameof(Deleted));
             }
         }
 

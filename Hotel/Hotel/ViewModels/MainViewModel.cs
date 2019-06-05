@@ -1,4 +1,5 @@
 ﻿using Hotel.Commands;
+using Hotel.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,9 @@ namespace Hotel.ViewModels
         #region Private methods
         private void Continue(object window)
         {
-            //open UserView
+            UserView userView = new UserView();
+            userView.Show();
             (window as Window)?.Close();
-            MessageBox.Show("Open UserView");
         }
         #endregion
     }

@@ -2,6 +2,7 @@
 using Hotel.Models.DataAccess;
 using Hotel.Models.Entity;
 using Hotel.Utils;
+using Hotel.Views;
 using System.Windows;
 
 namespace Hotel.ViewModels
@@ -44,17 +45,24 @@ namespace Hotel.ViewModels
                     switch (loggedUser.UserType)
                     {
                         case UserType.Client:
+                            UserView userView = new UserView();
 
+                            userView.Show();
                             break;
                         case UserType.Employee:
+                            EmployeeView employeeView = new EmployeeView();
 
+                            employeeView.Show();
                             break;
                         case UserType.Admin:
+                            AdminView adminView = new AdminView();
 
+                            adminView.Show();
                             break;
                         default:
                             break;
                     }
+                    Application.Current.MainWindow.Close();
                 }
                 else
                 {
