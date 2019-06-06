@@ -125,6 +125,7 @@ namespace Hotel.ViewModels
         private void OpenOfferView(OfferData offer)
         {
             OfferView offerView = new OfferView();
+            (offerView.DataContext as OfferViewModel).OfferData = offer;
             offerView.Show();
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Views"
         mc:Ignorable="d"
-        Title="{Binding RoomData.Room.RoomType}" Height="450" Width="800"
+        Title="{Binding RoomData.Room.RoomType}" Height="600" Width="1000"
         DataContext="{Binding RoomVM, Source={StaticResource Locator}}">
 
     <Grid>
@@ -67,11 +67,10 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Grid HorizontalAlignment="Center">
 
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="Features"/>
-                </Grid>
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Features"
+                           Style="{StaticResource LargeTextBlockBoldStyle}"/>
 
                 <ListView Grid.Row="1" Grid.Column="0"
                     ItemsSource="{Binding RoomData.Features}">
@@ -97,10 +96,9 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Grid HorizontalAlignment="Center">
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="Images"/>
-                </Grid>
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Images"
+                           Style="{StaticResource LargeTextBlockBoldStyle}"/>
 
                 <ListView Grid.Row="1" Grid.Column="0"
                     ItemsSource="{Binding RoomData.Images}">
@@ -114,7 +112,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            
+
         </Grid>
 
     </Grid>

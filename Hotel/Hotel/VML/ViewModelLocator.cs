@@ -32,6 +32,7 @@ namespace Hotel.VML
         public EmployeeViewModel EmployeeVM => CreateViewModel<EmployeeViewModel>();
         public AdminViewModel AdminVM => CreateViewModel<AdminViewModel>();
         public RoomViewModel RoomVM => CreateViewModel<RoomViewModel>();
+        public OfferViewModel OfferVM => CreateViewModel<OfferViewModel>();
         #endregion
     }
 }
