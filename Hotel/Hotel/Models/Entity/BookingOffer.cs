@@ -47,7 +47,7 @@ namespace Hotel.Models.Entity
         {
             get
             {
-                if (Offer.StartPeriod >= DateTime.Today)
+                if (Offer?.StartPeriod >= DateTime.Today)
                 {
                     this.status = Status.Canceled;
                 }

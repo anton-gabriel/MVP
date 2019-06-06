@@ -46,7 +46,6 @@ namespace Hotel.Models.DataAccess
             }
         }
 
-
         public IEnumerable<BookingOffer> GetAllBookingOffersForUser(int userId)
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))

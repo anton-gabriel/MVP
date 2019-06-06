@@ -17,8 +17,8 @@ namespace Hotel.Models.Entity
         private bool deleted;
         private int roomId;
         private int userId;
-        private uint numberOfRooms;
-        private uint numberOfPersons;
+        private int numberOfRooms;
+        private int numberOfPersons;
         private Status status;
         private DateTime startPeriod;
         private DateTime endPeriod;
@@ -50,7 +50,7 @@ namespace Hotel.Models.Entity
         [ForeignKey(nameof(RoomId))]
         public Room Room { get; set; }
 
-        public uint NumberOfRooms
+        public int NumberOfRooms
         {
             get => this.numberOfRooms;
             set
@@ -59,7 +59,7 @@ namespace Hotel.Models.Entity
                 OnPropertyChanged(propertyName: nameof(NumberOfRooms));
             }
         }
-        public uint NumberOfPersons
+        public int NumberOfPersons
         {
             get => this.numberOfPersons;
             set

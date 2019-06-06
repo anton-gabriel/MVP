@@ -34,6 +34,7 @@ namespace Hotel.VML
         public RoomViewModel RoomVM => CreateViewModel<RoomViewModel>();
         public OfferViewModel OfferVM => CreateViewModel<OfferViewModel>();
         public BookingsViewModel BookingsVM => CreateViewModel<BookingsViewModel>();
+        public CheckoutViewModel CheckoutVM => CreateViewModel<CheckoutViewModel>();
         #endregion
     }
 }

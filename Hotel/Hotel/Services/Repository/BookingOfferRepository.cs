@@ -1,6 +1,7 @@
 ﻿using Hotel.Models.Entity;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Hotel.Services.Repository
 {
@@ -22,7 +23,11 @@ namespace Hotel.Services.Repository
         #region IBookingOfferRepository
         public IEnumerable<BookingOffer> GetAllBookingOffersForUser(int userId)
         {
-            return HotelContext.BookingOffers.Where(value => (value.UserId == userId) && (value.Deleted == false)).ToList();
+            return HotelContext.BookingOffers
+                .Include(value => value.User)
+                .Include(value => value.Offer)
+                .Where(value => (value.UserId == userId) && (value.Deleted == false))
+                .ToList();
         }
         #endregion
     }

@@ -89,6 +89,14 @@
     <Compile Include="Migrations\201906061916071_ModifiedBookingOffer.Designer.cs">
       <DependentUpon>201906061916071_ModifiedBookingOffer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906062035388_Changes.cs" />
+    <Compile Include="Migrations\201906062035388_Changes.Designer.cs">
+      <DependentUpon>201906062035388_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906062115060_Update.cs" />
+    <Compile Include="Migrations\201906062115060_Update.Designer.cs">
+      <DependentUpon>201906062115060_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataAccess\BookingOfferDAL.cs" />
     <Compile Include="Models\DataAccess\BookingRoomDAL.cs" />
@@ -140,6 +148,7 @@
     <Compile Include="Utils\Validators.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\BookingsViewModel.cs" />
+    <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -153,6 +162,9 @@
     </Compile>
     <Compile Include="Views\BookingsView.xaml.cs">
       <DependentUpon>BookingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckoutView.xaml.cs">
+      <DependentUpon>CheckoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
@@ -188,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BookingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheckoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,6 +271,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906061916071_ModifiedBookingOffer.resx">
       <DependentUpon>201906061916071_ModifiedBookingOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906062035388_Changes.resx">
+      <DependentUpon>201906062035388_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906062115060_Update.resx">
+      <DependentUpon>201906062115060_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

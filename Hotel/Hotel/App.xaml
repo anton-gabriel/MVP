@@ -30,5 +30,8 @@
             <Setter Property="Margin"  Value="10"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
+        <Style x:Key="MediumTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
     </Application.Resources>
 </Application>

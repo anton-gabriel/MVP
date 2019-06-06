@@ -5,6 +5,14 @@ namespace Hotel.Services
 {
     internal class HotelContext : DbContext
     {
+        #region Constructors
+        public HotelContext()
+            : base("name=HotelContext")
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
+        #endregion
+
         #region Properties
         public DbSet<User> Users { get; set; }
         public DbSet<Offer> Offers { get; set; }

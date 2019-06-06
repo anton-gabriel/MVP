@@ -17,6 +17,8 @@ namespace Hotel.ViewModels
         {
             EndPeriod = DateTime.Today.AddDays(1);
             StartPeriod = DateTime.Today;
+            SelectedRooms = new ObservableCollection<RoomData>();
+            selectedOffers = new ObservableCollection<OfferData>();
         }
         #endregion
 
@@ -26,6 +28,8 @@ namespace Hotel.ViewModels
         private DateTime endPeriod;
         private ObservableCollection<RoomData> rooms;
         private ObservableCollection<OfferData> offers;
+        private ObservableCollection<RoomData> selectedRooms;
+        private ObservableCollection<OfferData> selectedOffers;
         #endregion
 
         #region Properties
@@ -36,6 +40,26 @@ namespace Hotel.ViewModels
             {
                 user = value;
                 OnPropertyChanged(propertyName: nameof(User));
+            }
+        }
+        public int ItemsNumber => SelectedRooms.Count + SelectedOffers.Count;
+        public ObservableCollection<RoomData> SelectedRooms
+        {
+            get => selectedRooms;
+            set
+            {
+                selectedRooms = value;
+                OnPropertyChanged(propertyName: nameof(SelectedRooms));
+                OnPropertyChanged(propertyName: nameof(ItemsNumber));
+            }
+        }
+        public ObservableCollection<OfferData> SelectedOffers
+        {
+            get => selectedOffers;
+            set
+            {
+                OnPropertyChanged(propertyName: nameof(SelectedOffers));
+                OnPropertyChanged(propertyName: nameof(ItemsNumber));
             }
         }
         public ObservableCollection<RoomData> Rooms
@@ -135,6 +159,45 @@ namespace Hotel.ViewModels
                 return this.viewBookingsCommand;
             }
         }
+
+        private RelayCommand<RoomData> addRoomCommand;
+        public RelayCommand<RoomData> AddRoomCommand
+        {
+            get
+            {
+                if (this.addRoomCommand == null)
+                {
+                    this.addRoomCommand = new RelayCommand<RoomData>(AddRoom);
+                }
+                return this.addRoomCommand;
+            }
+        }
+
+        private RelayCommand<OfferData> addOfferCommand;
+        public RelayCommand<OfferData> AddOfferCommand
+        {
+            get
+            {
+                if (this.addOfferCommand == null)
+                {
+                    this.addOfferCommand = new RelayCommand<OfferData>(AddOffer);
+                }
+                return this.addOfferCommand;
+            }
+        }
+
+        private RelayCommand checkoutCommand;
+        public RelayCommand CheckoutCommand
+        {
+            get
+            {
+                if (this.checkoutCommand == null)
+                {
+                    this.checkoutCommand = new RelayCommand(param => Checkout());
+                }
+                return this.checkoutCommand;
+            }
+        }
         #endregion
 
 
@@ -166,6 +229,31 @@ namespace Hotel.ViewModels
                 (bookingsView.DataContext as BookingsViewModel).BookingOffers = new ObservableCollection<BookingOffer>(bookingOffers);
             }
             bookingsView.Show();
+        }
+
+        private void AddRoom(RoomData roomData)
+        {
+            if(!SelectedRooms.Contains(roomData))
+            {
+                SelectedRooms.Add(roomData);
+                OnPropertyChanged(propertyName: nameof(ItemsNumber));
+            }
+        }
+        private void AddOffer(OfferData offerData)
+        {
+            if (!SelectedOffers.Contains(offerData))
+            {
+                SelectedOffers.Add(offerData);
+                OnPropertyChanged(propertyName: nameof(ItemsNumber));
+            }
+        }
+        private void Checkout()
+        {
+            CheckoutView checkoutView = new CheckoutView();
+            (checkoutView.DataContext as CheckoutViewModel).Offers = SelectedOffers;
+            (checkoutView.DataContext as CheckoutViewModel).Rooms = SelectedRooms;
+            (checkoutView.DataContext as CheckoutViewModel).User = User;
+            checkoutView.Show();
         }
 
         private void Search()

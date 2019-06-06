@@ -41,8 +41,8 @@
                   ItemsSource ="{Binding BookingRooms}">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Number of rooms" Binding="{Binding NumberOfRooms}" />
-                    <DataGridTextColumn Header="Number of persons" Binding="{Binding NumberOfPersons}" />
+                    <DataGridTextColumn Header="Number of rooms" Binding="{Binding NumberOfRooms}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Number of persons" Binding="{Binding NumberOfPersons}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" IsReadOnly="False" />
                     <DataGridTemplateColumn  CanUserResize="False" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
@@ -51,7 +51,7 @@
                                     Style="{StaticResource BaseButtonStyle}"
                                     Content="Details"
                                     Command="{Binding DataContext.ViewRoomCommand, ElementName=Rooms, Mode=OneWay}"
-                                    CommandParameter="{Binding}" />
+                                    CommandParameter="{Binding Room}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -68,17 +68,16 @@
                   ItemsSource ="{Binding BookingOffers}">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Offer.Name}" />
-                    <DataGridTextColumn Header="Number of persons" Binding="{Binding NumberOfPersons}" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" IsReadOnly="False" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Offer.Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" IsReadOnly="False"/>
                     <DataGridTemplateColumn  CanUserResize="False" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
                                     Style="{StaticResource BaseButtonStyle}"
                                     Content="Details"
-                                    Command="{Binding DataContext.ViewOfferCommand, ElementName=Offers, Mode=OneWay}"
-                                    CommandParameter="{Binding}" />
+                                    Command="{Binding DataContext.ViewOfferCommand, ElementName=Rooms, Mode=OneWay}"
+                                    CommandParameter="{Binding Offer}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

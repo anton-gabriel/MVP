@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Hotel.Services.Repository
 {
@@ -30,7 +31,10 @@ namespace Hotel.Services.Repository
 
         public IEnumerable<BookingRoom> GetAllBookingRoomsForUser(int userId)
         {
-            return HotelContext.BookingRooms.Where(value => (value.UserId == userId) && (value.Deleted == false)).ToList();
+            return HotelContext.BookingRooms
+                .Include(value => value.User)
+                .Include(value => value.Room)
+                .Where(value => (value.UserId == userId) && (value.Deleted == false)).ToList();
         }
         #endregion
     }
