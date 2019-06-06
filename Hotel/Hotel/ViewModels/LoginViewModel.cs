@@ -41,13 +41,12 @@ namespace Hotel.ViewModels
                 User loggedUser = userDAL.Login(User);
                 if (loggedUser != null)
                 {
-                    MessageBox.Show($"Login succeded: {loggedUser.UserType} , {loggedUser.FullName}");
                     switch (loggedUser.UserType)
                     {
                         case UserType.Client:
-                            UserView userView = new UserView();
-
-                            userView.Show();
+                            ClientView clientView = new ClientView();
+                            (clientView.DataContext as ClientViewModel).User = loggedUser;
+                            clientView.Show();
                             break;
                         case UserType.Employee:
                             EmployeeView employeeView = new EmployeeView();

@@ -22,10 +22,15 @@ namespace Hotel.Services.Repository
         #region IBookingRoomRepository
         public IEnumerable<Room> GetAvailableRooms(DateTime start, DateTime end)
         {
-            var available =  HotelContext.BookingRooms.Where(value => value.EndPeriod < start).Select(value => value.Room).ToList();
-            var booked = HotelContext.BookingRooms.Select(value => value.Room).ToList().Except(available);
-            var nonBooked = HotelContext.Rooms.ToList().Except(booked);
+            var available = HotelContext.BookingRooms.Where(value => (value.EndPeriod < start) && (value.Deleted == false)).Select(value => value.Room).ToList();
+            var booked = HotelContext.BookingRooms.Where(value => value.Deleted == false).Select((value => value.Room)).ToList().Except(available);
+            var nonBooked = HotelContext.Rooms.Where(value => value.Deleted == false).ToList().Except(booked);
             return booked.Union(nonBooked);
+        }
+
+        public IEnumerable<BookingRoom> GetAllBookingRoomsForUser(int userId)
+        {
+            return HotelContext.BookingRooms.Where(value => (value.UserId == userId) && (value.Deleted == false)).ToList();
         }
         #endregion
     }

@@ -1,17 +1,11 @@
 ﻿using Hotel.Commands;
 using Hotel.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Hotel.ViewModels
 {
     internal class MainViewModel
     {
-
         #region Commands
         private RelayCommand<object> continueCommand;
         public RelayCommand<object> ContinueCommand

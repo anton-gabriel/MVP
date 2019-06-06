@@ -1,4 +1,6 @@
 ﻿using Hotel.Models.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hotel.Services.Repository
 {
@@ -14,6 +16,14 @@ namespace Hotel.Services.Repository
 
         #region Properties
         public HotelContext HotelContext => Context as HotelContext;
+
+        #endregion
+
+        #region IBookingOfferRepository
+        public IEnumerable<BookingOffer> GetAllBookingOffersForUser(int userId)
+        {
+            return HotelContext.BookingOffers.Where(value => (value.UserId == userId) && (value.Deleted == false)).ToList();
+        }
         #endregion
     }
 }

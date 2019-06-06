@@ -11,7 +11,6 @@ namespace Hotel.Models.DataAccess
 {
     internal class OfferDAL
     {
-
         #region Public methods
         public void AddOffer(Offer room)
         {
@@ -46,7 +45,6 @@ namespace Hotel.Models.DataAccess
                 return result?.Deleted == false ? result : null;
             }
         }
-
         public OfferData GetOfferData(int id)
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))

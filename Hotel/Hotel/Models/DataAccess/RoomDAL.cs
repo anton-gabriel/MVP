@@ -41,7 +41,8 @@ namespace Hotel.Models.DataAccess
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                return unitOfWork.Rooms.Get(id);
+                var result = unitOfWork.Rooms.Get(id);
+                return result?.Deleted == false ? result : null;
             }
         }
 

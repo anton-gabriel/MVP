@@ -2,15 +2,10 @@
 using Hotel.Models.DataAccess;
 using Hotel.Models.Entity;
 using Hotel.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hotel.ViewModels
 {
-   internal class RegisterViewModel : NotifyPropertyChanged
+    internal class RegisterViewModel : NotifyPropertyChanged
     {
 
         #region Properties

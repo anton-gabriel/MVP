@@ -1,5 +1,6 @@
 ﻿using Hotel.Commands;
 using Hotel.Models.DataAccess;
+using Hotel.Models.Entity;
 using Hotel.Models.Extended;
 using Hotel.Utils;
 using Hotel.Views;
@@ -19,8 +20,8 @@ namespace Hotel.ViewModels
         }
         #endregion
 
-
         #region Private fields
+        private User user;
         private DateTime startPeriod;
         private DateTime endPeriod;
         private ObservableCollection<RoomData> rooms;
@@ -28,6 +29,15 @@ namespace Hotel.ViewModels
         #endregion
 
         #region Properties
+        public User User
+        {
+            get => user;
+            set
+            {
+                user = value;
+                OnPropertyChanged(propertyName: nameof(User));
+            }
+        }
         public ObservableCollection<RoomData> Rooms
         {
             get => this.rooms;
@@ -100,7 +110,6 @@ namespace Hotel.ViewModels
             }
         }
 
-
         private RelayCommand searchCommand;
         public RelayCommand SearchCommand
         {
@@ -111,6 +120,19 @@ namespace Hotel.ViewModels
                     this.searchCommand = new RelayCommand(param => Search());
                 }
                 return this.searchCommand;
+            }
+        }
+
+        private RelayCommand viewBookingsCommand;
+        public RelayCommand ViewBookingsCommand
+        {
+            get
+            {
+                if (this.viewBookingsCommand == null)
+                {
+                    this.viewBookingsCommand = new RelayCommand(param => OpenBookingsView());
+                }
+                return this.viewBookingsCommand;
             }
         }
         #endregion
@@ -126,7 +148,24 @@ namespace Hotel.ViewModels
         private void OpenOfferView(OfferData offer)
         {
             OfferView offerView = new OfferView();
+            (offerView.DataContext as OfferViewModel).OfferData = offer;
             offerView.Show();
+        }
+        private void OpenBookingsView()
+        {
+            BookingsView bookingsView = new BookingsView();
+
+            var bookingOffers = new BookingOfferDAL().GetAllBookingOffersForUser(User.Id);
+            var bookingRooms = new BookingRoomDAL().GetAllBookingRoomsForUser(User.Id);
+            if (bookingRooms != null)
+            {
+                (bookingsView.DataContext as BookingsViewModel).BookingRooms = new ObservableCollection<BookingRoom>(bookingRooms);
+            }
+            if (bookingOffers != null)
+            {
+                (bookingsView.DataContext as BookingsViewModel).BookingOffers = new ObservableCollection<BookingOffer>(bookingOffers);
+            }
+            bookingsView.Show();
         }
 
         private void Search()

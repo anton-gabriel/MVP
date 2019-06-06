@@ -85,7 +85,13 @@
     <Compile Include="Migrations\201906061015596_CreatedOffer.Designer.cs">
       <DependentUpon>201906061015596_CreatedOffer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906061916071_ModifiedBookingOffer.cs" />
+    <Compile Include="Migrations\201906061916071_ModifiedBookingOffer.Designer.cs">
+      <DependentUpon>201906061916071_ModifiedBookingOffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataAccess\BookingOfferDAL.cs" />
+    <Compile Include="Models\DataAccess\BookingRoomDAL.cs" />
     <Compile Include="Models\DataAccess\OfferDAL.cs" />
     <Compile Include="Models\DataAccess\RoomDAL.cs" />
     <Compile Include="Models\DataAccess\UserDAL.cs" />
@@ -133,6 +139,7 @@
     <Compile Include="Utils\UserDialog.cs" />
     <Compile Include="Utils\Validators.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\BookingsViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -143,6 +150,9 @@
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingsView.xaml.cs">
+      <DependentUpon>BookingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
@@ -174,6 +184,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906061015596_CreatedOffer.resx">
       <DependentUpon>201906061015596_CreatedOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061916071_ModifiedBookingOffer.resx">
+      <DependentUpon>201906061916071_ModifiedBookingOffer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

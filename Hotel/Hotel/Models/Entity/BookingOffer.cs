@@ -14,6 +14,7 @@ namespace Hotel.Models.Entity
         private bool deleted;
         private int userId;
         private int offerId;
+        private Status status;
         #endregion
 
         #region Properties
@@ -42,6 +43,22 @@ namespace Hotel.Models.Entity
         [ForeignKey(nameof(OfferId))]
         public Offer Offer { get; set; }
 
+        public Status Status
+        {
+            get
+            {
+                if (Offer.StartPeriod >= DateTime.Today)
+                {
+                    this.status = Status.Canceled;
+                }
+                return this.status;
+            }
+            set
+            {
+                this.status = value;
+                OnPropertyChanged(propertyName: nameof(Status));
+            }
+        }
         public bool Deleted
         {
             get => deleted;

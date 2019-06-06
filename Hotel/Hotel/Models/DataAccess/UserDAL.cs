@@ -39,7 +39,8 @@ namespace Hotel.Models.DataAccess
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                return unitOfWork.Users.Get(id);
+                var result = unitOfWork.Users.Get(id);
+                return result?.Deleted == false ? result : null;
             }
         }
 
@@ -47,7 +48,8 @@ namespace Hotel.Models.DataAccess
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                return unitOfWork.Users.SingleOrDefault(value => (value.Email == user.Email) && (value.Password == user.Password));
+                var result = unitOfWork.Users.SingleOrDefault(value => (value.Email == user.Email) && (value.Password == user.Password));
+                return result?.Deleted == false ? result : null;
             }
         }
 

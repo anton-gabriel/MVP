@@ -7,5 +7,6 @@ namespace Hotel.Services.Repository
     internal interface IBookingRoomRepository : IRepository<BookingRoom>
     {
         IEnumerable<Room> GetAvailableRooms(DateTime start, DateTime end);
+        IEnumerable<BookingRoom> GetAllBookingRoomsForUser(int userId);
     }
 }
