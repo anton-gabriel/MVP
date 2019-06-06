@@ -12,86 +12,97 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        <Grid Name="Search" Grid.Row="0"
+              Background="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
+                <Grid Grid.Column="0"
+                  Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker Grid.Column="0"
+                        SelectedDate="{Binding StartPeriod, Mode=TwoWay}"/>
+                    <DatePicker Grid.Column="1"
+                        SelectedDate="{Binding EndPeriod, Mode=TwoWay}"/>
+                </Grid>
+                <Button Grid.Column="1"
+                    Content="Search"
+                    Command="{Binding SearchCommand, Mode=OneWay}"
+                    Margin="10"/>
             </Grid>
-            
-            <DatePicker Grid.Column="0"
-                        SelectedDate =""></DatePicker>
-            <DatePicker Grid.Column="1"
-                        SelectedDate =""></DatePicker>
-        </Grid>
-        <Grid Grid.Row="0" Grid.Column="2">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-
-            </Grid>
-
-            <DatePicker Grid.Column="0"
-                        SelectedDate =""></DatePicker>
-            <DatePicker Grid.Column="1"
-                        SelectedDate =""></DatePicker>
         </Grid>
 
+        <Grid Name="Results" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <Grid Name="Search" Grid.Row="1" Grid.Column="1"
-                  Margin="10px">
+            <DataGrid Grid.Column="0"
+                  GridLinesVisibility="None"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  ItemsSource ="{Binding Rooms}">
 
-            <ItemsControl ItemsSource="{Binding Rooms}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0"
-                                       Text="{Binding Room.RoomType}"
-                                       Style="{StaticResource PaddingTextBlockStyle}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1"
-                                       Text="{Binding Room.Price}"
-                                       Style="{StaticResource PaddingTextBlockStyle}"/>
-                            <Button Grid.Row="0" Grid.Column="2"
-                                    Height="auto"
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Room type" Binding="{Binding Room.RoomType}" />
+                    <DataGridTextColumn Header="Total price" Binding="{Binding Price}" />
+                    <DataGridTemplateColumn  CanUserResize="False" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
                                     Style="{StaticResource BaseButtonStyle}"
                                     Content="Details"
-                                    Command="{Binding DataContext.ViewRoomCommand, ElementName=Search, Mode=OneWay}"
+                                    Command="{Binding DataContext.ViewRoomCommand, ElementName=Results, Mode=OneWay}"
                                     CommandParameter="{Binding}" />
-                            <!--<ItemsControl ItemsSource="{Binding Images}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                                <Image Source="{Binding Image}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>-->
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
 
+            <DataGrid Grid.Column="1"
+                  GridLinesVisibility="None"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  ItemsSource="{Binding Offers}">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Offer.Name}" />
+                    <DataGridTextColumn Header="Room type" Binding="{Binding RoomData.Room.RoomType}" />
+                    <DataGridTextColumn Header="Number of days" Binding="{Binding NumberOfDays}" />
+                    <DataGridTextColumn Header="Total price" Binding="{Binding Price}" />
+                    <DataGridTemplateColumn  CanUserResize="False" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Style="{StaticResource BaseButtonStyle}"
+                                    Content="Details"
+                                    Command="{Binding DataContext.ViewOfferCommand, ElementName=Results, Mode=OneWay}"
+                                    CommandParameter="{Binding}">
+
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-
-
     </Grid>
 </Window>

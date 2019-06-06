@@ -1,6 +1,5 @@
 ﻿using Hotel.Models.Entity;
 using Hotel.Models.Extended;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -36,6 +35,15 @@ namespace Hotel.Utils
             {
                 BookingRoom = bookingRoom,
                 Services = new ObservableCollection<Service>(services)
+            };
+        }
+
+        public static OfferData ToOfferData(this RoomData roomData, Offer offer)
+        {
+            return new OfferData
+            {
+                RoomData = roomData,
+                Offer = offer
             };
         }
     }

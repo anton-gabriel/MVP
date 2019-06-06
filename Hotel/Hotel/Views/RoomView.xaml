@@ -1,0 +1,121 @@
+﻿<Window x:Class="Hotel.Views.RoomView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.Views"
+        mc:Ignorable="d"
+        Title="{Binding RoomData.Room.RoomType}" Height="450" Width="800"
+        DataContext="{Binding RoomVM, Source={StaticResource Locator}}">
+
+    <Grid>
+
+        <Grid Margin="20"
+              Background="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Name="Type" Grid.Row="0"
+                  Margin="5"
+                  Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Margin="5"
+                           Text="Room type"
+                           Style="{StaticResource LargeTextBlockBoldStyle}"/>
+                <TextBlock Grid.Column="1"
+                           Text="{Binding RoomData.Room.RoomType, Mode=OneWay}"
+                           Margin="5"
+                           Style="{StaticResource LargeTextBlockStyle}"/>
+            </Grid>
+
+            <Grid Name="Price" Grid.Row="1"
+                  Margin="5"
+                  Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Margin="5"
+                           Text="Price"
+                           Style="{StaticResource LargeTextBlockBoldStyle}"/>
+                <TextBlock Grid.Column="1"
+                           Text="{Binding RoomData.Price, Mode=OneWay}"
+                           Margin="5"
+                           Style="{StaticResource LargeTextBlockStyle}"/>
+            </Grid>
+
+            <Grid Name="Features" Grid.Row="2"
+                  Margin="5"
+                  Background="WhiteSmoke">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid HorizontalAlignment="Center">
+
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Features"/>
+                </Grid>
+
+                <ListView Grid.Row="1" Grid.Column="0"
+                    ItemsSource="{Binding RoomData.Features}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid Name="Images" Grid.Row="3"
+                  Margin="5"
+                  Background="WhiteSmoke">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid HorizontalAlignment="Center">
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Images"/>
+                </Grid>
+
+                <ListView Grid.Row="1" Grid.Column="0"
+                    ItemsSource="{Binding RoomData.Images}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Center">
+                                <Image Grid.Row="0"
+                                       Height="auto" Source="{Binding BitmapImage}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
+        </Grid>
+
+    </Grid>
+</Window>

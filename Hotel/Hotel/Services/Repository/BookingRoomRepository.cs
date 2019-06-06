@@ -22,7 +22,8 @@ namespace Hotel.Services.Repository
         #region IBookingRoomRepository
         public IEnumerable<Room> GetAvailableRooms(DateTime start, DateTime end)
         {
-            var booked =  HotelContext.BookingRooms.Where(value => value.EndPeriod < start).Select(value => value.Room).ToList();
+            var available =  HotelContext.BookingRooms.Where(value => value.EndPeriod < start).Select(value => value.Room).ToList();
+            var booked = HotelContext.BookingRooms.Select(value => value.Room).ToList().Except(available);
             var nonBooked = HotelContext.Rooms.ToList().Except(booked);
             return booked.Union(nonBooked);
         }

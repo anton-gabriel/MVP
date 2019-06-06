@@ -7,6 +7,7 @@ namespace Hotel.Services
     {
         #region Properties
         public DbSet<User> Users { get; set; }
+        public DbSet<Offer> Offers { get; set; }
         public DbSet<BookingOffer> BookingOffers { get; set; }
         public DbSet<BookingRoom> BookingRooms { get; set; }
         public DbSet<BookingRoomService> BookingRoomServices { get; set; }

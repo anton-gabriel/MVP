@@ -81,7 +81,12 @@
     <Compile Include="Migrations\201906051110491_CreatedDatabase.Designer.cs">
       <DependentUpon>201906051110491_CreatedDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906061015596_CreatedOffer.cs" />
+    <Compile Include="Migrations\201906061015596_CreatedOffer.Designer.cs">
+      <DependentUpon>201906061015596_CreatedOffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataAccess\OfferDAL.cs" />
     <Compile Include="Models\DataAccess\RoomDAL.cs" />
     <Compile Include="Models\DataAccess\UserDAL.cs" />
     <Compile Include="Models\Entity\BookingOffer.cs" />
@@ -95,6 +100,7 @@
     <Compile Include="Models\Entity\Service.cs" />
     <Compile Include="Models\Entity\User.cs" />
     <Compile Include="Models\Extended\BookingRoomData.cs" />
+    <Compile Include="Models\Extended\OfferData.cs" />
     <Compile Include="Models\Extended\RoomData.cs" />
     <Compile Include="Services\HotelContext.cs" />
     <Compile Include="Services\Repository\BookingOfferRepository.cs" />
@@ -132,6 +138,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\RoomViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
@@ -148,8 +155,14 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OfferView.xaml.cs">
+      <DependentUpon>OfferView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomView.xaml.cs">
+      <DependentUpon>RoomView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -179,7 +192,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OfferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoomView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906051110491_CreatedDatabase.resx">
       <DependentUpon>201906051110491_CreatedDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061015596_CreatedOffer.resx">
+      <DependentUpon>201906061015596_CreatedOffer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
