@@ -30,7 +30,12 @@ namespace Hotel.Models.DataAccess
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
                 var result = unitOfWork.Users.Get(user.Id);
-                result = user;
+                result.FirstName = user.FirstName;
+                result.LastName = user.LastName;
+                result.Email = user.Email;
+                result.Deleted = user.Deleted;
+                result.Password = user.Password;
+                result.UserType = user.UserType;
                 unitOfWork.Complete();
             }
         }

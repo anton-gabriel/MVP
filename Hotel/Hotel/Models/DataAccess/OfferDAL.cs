@@ -33,7 +33,11 @@ namespace Hotel.Models.DataAccess
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
                 var result = unitOfWork.Offers.Get(offer.Id);
-                result = offer;
+                result.Name = offer.Name;
+                result.RoomId = offer.RoomId;
+                result.StartPeriod = offer.StartPeriod;
+                result.EndPeriod = offer.EndPeriod;
+                result.Deleted = offer.Deleted;
                 unitOfWork.Complete();
             }
         }

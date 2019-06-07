@@ -9,6 +9,24 @@
         DataContext="{Binding AdminVM, Source={StaticResource Locator}}">
     
     <Grid>
-        
+        <Grid Name="AdminPages" Grid.Row="1" Grid.Column="0">
+            <TabControl Name="tabControl" SelectedIndex="0">
+                <TabItem Header="User">
+                    <local:UserCRUDView></local:UserCRUDView>
+                </TabItem>
+                <TabItem Header="Feature">
+                    <local:FeatureCRUDView></local:FeatureCRUDView>
+                </TabItem>
+                <TabItem Header="Service">
+                    <local:ServiceCRUDView></local:ServiceCRUDView>
+                </TabItem>
+                <TabItem Header="Offer">
+                    <local:OfferCRUDView></local:OfferCRUDView>
+                </TabItem>
+                <TabItem Header="Room">
+                    <local:RoomCRUDView></local:RoomCRUDView>
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>

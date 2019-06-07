@@ -9,47 +9,49 @@ using System.Threading.Tasks;
 
 namespace Hotel.Models.DataAccess
 {
-    internal class BookingRoomDAL
+    internal class ServiceDAL
     {
         #region Public methods
-        public void AddBookingRoom(BookingRoom bookingRoom)
+        public void AddService(Service service)
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                unitOfWork.BookingRooms.Add(bookingRoom);
+                unitOfWork.Services.Add(service);
                 unitOfWork.Complete();
             }
         }
-        public void RemoveBookingRoom(BookingRoom bookingRoom)
+        public void RemoveService(Service service)
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                bookingRoom.Deleted = true;
+                service.Deleted = true;
                 unitOfWork.Complete();
             }
         }
-        public void UpdateBookingRoom(BookingRoom bookingRoom)
+        public void UpdateService(Service service)
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                var result = unitOfWork.BookingRooms.Get(bookingRoom.Id);
-                result = bookingRoom;
+                var result = unitOfWork.Services.Get(service.Id);
+                result.Price = service.Price;
+                result.ServiceType = service.ServiceType;
+                result.Deleted = service.Deleted;
                 unitOfWork.Complete();
             }
         }
-        public BookingRoom GetBookingRoom(int id)
+        public Service GetService(int id)
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                var result = unitOfWork.BookingRooms.Get(id);
+                var result = unitOfWork.Services.Get(id);
                 return result?.Deleted == false ? result : null;
             }
         }
-        public IEnumerable<BookingRoom> GetAllBookingRoomsForUser(int userId)
+        public IEnumerable<Service> GetAllServices()
         {
             using (var unitOfWork = new UnitOfWork(new HotelContext()))
             {
-                return unitOfWork.BookingRooms.GetAllBookingRoomsForUser(userId);
+                return unitOfWork.Services.GetAll().Where(value => value.Deleted == false).ToList();
             }
         }
         #endregion

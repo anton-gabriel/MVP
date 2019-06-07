@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -100,8 +101,12 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataAccess\BookingOfferDAL.cs" />
     <Compile Include="Models\DataAccess\BookingRoomDAL.cs" />
+    <Compile Include="Models\DataAccess\BookingRoomServiceDAL.cs" />
+    <Compile Include="Models\DataAccess\FeatureDAL.cs" />
     <Compile Include="Models\DataAccess\OfferDAL.cs" />
     <Compile Include="Models\DataAccess\RoomDAL.cs" />
+    <Compile Include="Models\DataAccess\RoomFeatureDAL.cs" />
+    <Compile Include="Models\DataAccess\ServiceDAL.cs" />
     <Compile Include="Models\DataAccess\UserDAL.cs" />
     <Compile Include="Models\Entity\BookingOffer.cs" />
     <Compile Include="Models\Entity\BookingRoom.cs" />
@@ -141,6 +146,7 @@
     <Compile Include="Services\Repository\UserRepository.cs" />
     <Compile Include="Services\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Services\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Utils\Connections.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\NotifyPropertyChanged.cs" />
     <Compile Include="Utils\Paths.cs" />
@@ -151,11 +157,16 @@
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\FeatureCRUDViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OfferCRUDViewModel.cs" />
     <Compile Include="ViewModels\OfferViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\RoomCRUDViewModel.cs" />
     <Compile Include="ViewModels\RoomViewModel.cs" />
+    <Compile Include="ViewModels\ServiceCRUDViewModel.cs" />
+    <Compile Include="ViewModels\UserCRUDViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
@@ -172,11 +183,17 @@
     <Compile Include="Views\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FeatureCRUDView.xaml.cs">
+      <DependentUpon>FeatureCRUDView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OfferCRUDView.xaml.cs">
+      <DependentUpon>OfferCRUDView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OfferView.xaml.cs">
       <DependentUpon>OfferView.xaml</DependentUpon>
@@ -184,8 +201,17 @@
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RoomCRUDView.xaml.cs">
+      <DependentUpon>RoomCRUDView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoomView.xaml.cs">
       <DependentUpon>RoomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServiceCRUDView.xaml.cs">
+      <DependentUpon>ServiceCRUDView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserCRUDView.xaml.cs">
+      <DependentUpon>UserCRUDView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -215,11 +241,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FeatureCRUDView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OfferCRUDView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,7 +265,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RoomCRUDView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RoomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ServiceCRUDView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserCRUDView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

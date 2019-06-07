@@ -253,6 +253,8 @@ namespace Hotel.ViewModels
             (checkoutView.DataContext as CheckoutViewModel).Offers = SelectedOffers;
             (checkoutView.DataContext as CheckoutViewModel).Rooms = SelectedRooms;
             (checkoutView.DataContext as CheckoutViewModel).User = User;
+            (checkoutView.DataContext as CheckoutViewModel).StartPeriod = StartPeriod;
+            (checkoutView.DataContext as CheckoutViewModel).EndPeriod = EndPeriod;
             checkoutView.Show();
         }
 
