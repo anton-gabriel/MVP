@@ -53,6 +53,13 @@ namespace Hotel.Models.DataAccess
                 return unitOfWork.BookingOffers.GetAllBookingOffersForUser(userId);
             }
         }
+        public IEnumerable<BookingOffer> GetAllBookingOffers()
+        {
+            using (var unitOfWork = new UnitOfWork(new HotelContext()))
+            {
+                return unitOfWork.BookingOffers.GetAll();
+            }
+        }
         #endregion
     }
 }

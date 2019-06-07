@@ -52,6 +52,13 @@ namespace Hotel.Models.DataAccess
                 return unitOfWork.BookingRooms.GetAllBookingRoomsForUser(userId);
             }
         }
+        public IEnumerable<BookingRoom> GetAllBookingRooms()
+        {
+            using (var unitOfWork = new UnitOfWork(new HotelContext()))
+            {
+                return unitOfWork.BookingRooms.GetAll();
+            }
+        }
         #endregion
     }
 }

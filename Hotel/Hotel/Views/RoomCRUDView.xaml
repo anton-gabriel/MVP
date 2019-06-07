@@ -97,8 +97,9 @@
                   ItemsSource ="{Binding RoomFeatures}">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Room Id" Binding="{Binding RoomId}" />
                     <DataGridTextColumn Header="Feature Id" Binding="{Binding FeatureId}" />
+                    <DataGridTextColumn Header="Feature Name" Binding="{Binding Feature.Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Feature Price" Binding="{Binding Feature.Price}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

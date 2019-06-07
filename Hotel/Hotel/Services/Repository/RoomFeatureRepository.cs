@@ -24,7 +24,15 @@ namespace Hotel.Services.Repository
         #region IRoomFeatureRepository
         public IEnumerable<Feature> GetFeatures(int roomId)
         {
-            return HotelContext.RoomFeatures.Where(value => value.RoomId == roomId).Select(value => value.Feature).ToList();
+            return HotelContext.RoomFeatures.Where(value => (value.RoomId == roomId) && (value.Deleted == false)).Select(value => value.Feature).ToList();
+        }
+
+        public IEnumerable<RoomFeature> GetRoomFeatures(int roomId)
+        {
+            return HotelContext.RoomFeatures
+                .Include(value => value.Feature)
+                .Include(value => value.Room)
+                .Where(value => (value.RoomId == roomId) && (value.Deleted == false)).ToList();
         }
         #endregion
     }

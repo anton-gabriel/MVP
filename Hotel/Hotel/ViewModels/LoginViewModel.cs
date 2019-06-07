@@ -50,7 +50,7 @@ namespace Hotel.ViewModels
                             break;
                         case UserType.Employee:
                             EmployeeView employeeView = new EmployeeView();
-
+                            (employeeView.DataContext as EmployeeViewModel).User = loggedUser;
                             employeeView.Show();
                             break;
                         case UserType.Admin:

@@ -17,6 +17,8 @@ namespace Hotel.ViewModels
         public RoomCRUDViewModel()
         {
             Room = new Room();
+            RoomFeatures = new ObservableCollection<RoomFeature>(
+                new RoomFeatureDAL().GetAllRoomFeaturesForRoom(Room.Id));
         }
         #endregion
 
@@ -134,11 +136,15 @@ namespace Hotel.ViewModels
         {
             RoomDAL roomDAL = new RoomDAL();
             roomDAL.UpdateRoom(Room);
+            RoomFeatureDAL roomFeatureDAL = new RoomFeatureDAL();
+            RoomFeatures.ToList().ForEach(value => roomFeatureDAL.AddRoomFeature(value));
         }
         private void Get()
         {
             RoomDAL roomDAL = new RoomDAL();
             Room = roomDAL.GetRoom(Id);
+            RoomFeatures = new ObservableCollection<RoomFeature>(
+                new RoomFeatureDAL().GetAllRoomFeaturesForRoom(Room.Id));
         }
         private void Delete()
         {
